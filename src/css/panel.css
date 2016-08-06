@@ -1,0 +1,23 @@
+.panel {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.panel__label {
+    display: block;
+
+    font-family: sans-serif, Arial;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.2em;
+}
+
+.panel__input {
+    display: block;
+
+    font-family: sans-serif, Arial;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.2em;
+}
