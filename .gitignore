@@ -1,3 +1,6 @@
+#project
+.idea
+
 # Logs
 logs
 *.log
