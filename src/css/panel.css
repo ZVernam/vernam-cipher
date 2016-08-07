@@ -1,7 +1,9 @@
 .panel {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: space-between;
+
+    padding: 5px 0;
 }
 
 .panel__label {
@@ -17,7 +19,10 @@
     display: block;
 
     font-family: sans-serif, Arial;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: normal;
     line-height: 1.2em;
+
+    border: 2px #747474 solid;
+
 }
