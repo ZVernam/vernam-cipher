@@ -1,3 +1,6 @@
+@import "panel.css";
+@import "tab.css";
+
 .main {
     margin: 0 auto;
     width: 280px;

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="panel.css"/>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,20 +9,40 @@
 </head>
 <body>
 <main class="main">
-    <form>
-        <div class="panel">
-            <label for="text" class="panel__label">Plain Text</label>
-            <input id="text" class="panel__input" type="text" placeholder="Plain Text">
+    <div class="tabs">
+        <div class="tab__bars">
+            <button class="tab__bar  tab__bar--selected">Encrypt</button>
+            <button class="tab__bar">Decrypt</button>
         </div>
-        <div class="panel">
-            <label for="secret" class="panel__label">Secret</label>
-            <input id="secret" class="panel__input" type="password" placeholder="Secret">
-        </div>
-        <div class="panel">
-            <label for="cipher" class="panel__label">Cipher Text</label>
-            <input id="cipher" class="panel__input" type="text" placeholder="Cipher Text" readonly>
-        </div>
-    </form>
+        <form id="encrypt" class="tab__content  tab__content--selected">
+            <div class="panel">
+                <label for="encrypt-text" class="panel__label">Plain Text</label>
+                <input id="encrypt-text" class="panel__input" type="text" placeholder="Plain Text">
+            </div>
+            <div class="panel">
+                <label for="encrypt-secret" class="panel__label">Secret</label>
+                <input id="encrypt-secret" class="panel__input" type="password" placeholder="Secret">
+            </div>
+            <div class="panel">
+                <label for="encript-cipher" class="panel__label">Cipher Text</label>
+                <input id="encript-cipher" class="panel__input" type="text" placeholder="Cipher Text" readonly>
+            </div>
+        </form>
+        <form id="decrypt" class="tab__content">
+            <div class="panel">
+                <label for="decrypt-cipher" class="panel__label">Cipher Text</label>
+                <input id="decrypt-cipher" class="panel__input" type="text" placeholder="Plain Text">
+            </div>
+            <div class="panel">
+                <label for="decrypt-secret" class="panel__label">Secret</label>
+                <input id="decrypt-secret" class="panel__input" type="password" placeholder="Secret">
+            </div>
+            <div class="panel">
+                <label for="decrypt-text" class="panel__label">Decoded Text</label>
+                <input id="decrypt-text" class="panel__input" type="text" placeholder="Cipher Text" readonly>
+            </div>
+        </form>
+    </div>
 </main>
 <script type="application/javascript" src="main.js"></script>
 </body>
