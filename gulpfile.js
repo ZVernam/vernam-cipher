@@ -3,6 +3,7 @@ var webpack = require('webpack-stream');
 var browserSync = require('browser-sync');
 var stream = browserSync.stream;
 var ghpages = require('gh-pages');
+var path = require('path');
 
 gulp.task('scripts', function () {
     return gulp.src('src/js/main.js')
@@ -36,7 +37,10 @@ gulp.task('watch', ['server'], function () {
 
 gulp.task('build', ['index']);
 gulp.task('publish', ['build'], function (end) {
-    ghpages.publish('dist');
-    end();
+    ghpages.publish(path.join(__dirname, 'dist'), {
+        logger: function(message) {
+            console.log(message);
+        }
+    }, end);
 });
 gulp.task('default', ['build']);
