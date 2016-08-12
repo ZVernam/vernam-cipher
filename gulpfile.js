@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var webpack = require('webpack-stream');
 var browserSync = require('browser-sync');
 var stream = browserSync.stream;
+var ghpages = require('gh-pages');
 
 gulp.task('scripts', function () {
     return gulp.src('src/js/main.js')
@@ -27,10 +28,15 @@ gulp.task('server', ['index'], function () {
     });
 });
 
+
 gulp.task('watch', ['server'], function () {
     gulp.watch('src/js/*.*', ['scripts']);
     gulp.watch('src/css/*.*', ['styles']);
 });
 
 gulp.task('build', ['index']);
+gulp.task('publish', ['build'], function (end) {
+    ghpages.publish('dist');
+    end();
+});
 gulp.task('default', ['build']);

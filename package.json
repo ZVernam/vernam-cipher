@@ -6,7 +6,8 @@
   "scripts": {
     "test": "test",
     "build": "gulp build",
-    "server": "gulp watch"
+    "server": "gulp watch",
+    "publish": "gulp publish"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/zeckson/vernam-cipher#readme",
   "devDependencies": {
     "browser-sync": "2.14.0",
+    "gh-pages": "0.11.0",
     "gulp": "3.9.1",
     "webpack": "1.13.1",
     "webpack-stream": "3.2.0"
