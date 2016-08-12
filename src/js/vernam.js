@@ -23,7 +23,7 @@ class Converter {
     }
 }
 
-let converter = new Converter(require('./latin'));
+let converter = new Converter(require('./cryptic'));
 
 let xor = function (left, right) {
     return left ^ right;
