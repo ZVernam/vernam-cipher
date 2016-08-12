@@ -144,11 +144,10 @@
 /* 4 */
 /***/ function(module, exports) {
 
-	module.exports = [];
-	for (var i = 'a'.charCodeAt(0); i < 'z'.charCodeAt(0); i++) {
-	    module.exports.push(String.fromCharCode(i));
-	}
+	"use strict";
 
+	const alphabet = '@bCd3f9h1jKlm2nN0pq4r$tuv5wW6x7y8Zz';
+	module.exports = Array.from(alphabet);
 
 /***/ },
 /* 5 */
