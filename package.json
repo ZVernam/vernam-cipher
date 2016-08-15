@@ -4,9 +4,9 @@
   "description": "Vernam cipher JS implementation",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "mocha",
     "build": "gulp build",
-    "server": "gulp watch",
+    "start": "gulp watch",
     "publish": "gulp publish"
   },
   "repository": {
@@ -27,8 +27,11 @@
     "browser-sync": "2.14.0",
     "gh-pages": "0.11.0",
     "gulp": "3.9.1",
+    "mocha": "3.0.2",
     "webpack": "1.13.1",
     "webpack-stream": "3.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "jshashes": "1.0.5"
+  }
 }
