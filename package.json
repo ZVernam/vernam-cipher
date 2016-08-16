@@ -32,6 +32,7 @@
     "webpack-stream": "3.2.0"
   },
   "dependencies": {
-    "jshashes": "1.0.5"
+    "jshashes": "1.0.5",
+    "open-iconic": "^1.1.1"
   }
 }
