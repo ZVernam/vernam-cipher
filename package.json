@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "jshashes": "1.0.5",
-    "open-iconic": "^1.1.1"
+    "open-iconic": "^1.1.1",
+    "zxcvbn": "4.3.0"
   }
 }
