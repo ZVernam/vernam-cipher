@@ -8,7 +8,10 @@ var path = require('path');
 gulp.task('scripts', function () {
     return gulp.src('src/js/main.js')
         .pipe(webpack({
-            output: {filename: 'main.js'}
+            output: {filename: 'main.js'},
+            resolve: {
+                modulesDirectories: ['node_modules', './src']
+            }
         }))
         .pipe(gulp.dest('dist')).pipe(stream());
 });
