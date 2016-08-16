@@ -10,7 +10,7 @@ gulp.task('scripts', function () {
         .pipe(webpack({
             output: {filename: 'main.js'},
             resolve: {
-                modulesDirectories: ['node_modules', './src']
+                modulesDirectories: ['node_modules', './src/js']
             }
         }))
         .pipe(gulp.dest('dist')).pipe(stream());
