@@ -1,4 +1,4 @@
-var vernam = require('./vernam');
+var vernam = require('./vernam')({});
 var controller = require('./controller');
 
 controller(vernam.encrypt,
