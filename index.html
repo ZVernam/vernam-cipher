@@ -25,7 +25,14 @@
             </div>
             <div class="panel">
                 <label for="encrypt-cipher" class="panel__label">Cipher Text</label>
-                <input id="encrypt-cipher" class="panel__input" type="text" placeholder="Cipher Text" readonly>
+                <div class="panel__group">
+                    <input id="encrypt-cipher" class="panel__input" type="text" placeholder="Cipher Text" readonly>
+                    <button id="copy-to-clipboard" class="panel__button">
+                        <svg viewBox="0 0 8 8" width="28" height="28">
+                            <use xlink:href="open-iconic.svg#clipboard"></use>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </form>
         <form id="decrypt" class="tab__content">
