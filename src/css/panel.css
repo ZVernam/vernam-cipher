@@ -10,19 +10,35 @@
     display: block;
 
     font-family: sans-serif, Arial;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: normal;
     line-height: 1.2em;
 }
 
 .panel__input {
-    display: block;
+    display: inline;
+    vertical-align: bottom;
+    flex-grow: 1;
 
     font-family: sans-serif, Arial;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: normal;
-    line-height: 1.2em;
+    line-height: 1.3em;
 
     border: 2px #747474 solid;
+}
 
+.panel__group {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-end;
+
+}
+
+.panel__button {
+    display: inline;
+    vertical-align: bottom;
+
+    fill: grey;
 }

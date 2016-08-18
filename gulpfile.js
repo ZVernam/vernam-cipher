@@ -21,7 +21,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('index', ['styles', 'scripts'], function () {
-    return gulp.src('src/index.html').pipe(gulp.dest('dist'));
+    return gulp.src(['src/index.html', 'src/icons/*']).pipe(gulp.dest('dist'));
 });
 
 gulp.task('server', ['index'], function () {
@@ -36,12 +36,13 @@ gulp.task('server', ['index'], function () {
 gulp.task('watch', ['server'], function () {
     gulp.watch('src/js/*.*', ['scripts']);
     gulp.watch('src/css/*.*', ['styles']);
+    gulp.watch('src/index.html').on('change', browserSync.reload);
 });
 
 gulp.task('build', ['index']);
 gulp.task('publish', ['build'], function (end) {
     ghpages.publish(path.join(__dirname, 'dist'), {
-        logger: function(message) {
+        logger: function (message) {
             console.log(message);
         }
     }, end);
