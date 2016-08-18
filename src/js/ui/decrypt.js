@@ -1,5 +1,5 @@
-var vernam = require('./vernam')({});
-var controller = require('./controller');
+var vernam = require('./../cipher/vernam')({});
+var controller = require('./../controller');
 
 controller(vernam.encrypt,
     document.getElementById("decrypt-cipher"),

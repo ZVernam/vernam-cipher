@@ -1,5 +1,5 @@
 "use strict";
 
-require('./tab');
-require('./encrypt');
-require('./decrypt');
+require('./ui/tab');
+require('./ui/encrypt');
+require('./ui/decrypt');
