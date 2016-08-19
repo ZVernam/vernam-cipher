@@ -5,6 +5,7 @@ var stream = browserSync.stream;
 var ghpages = require('gh-pages');
 var path = require('path');
 
+const cssSources = 'src/css/*';
 gulp.task('scripts', function () {
     return gulp.src('src/js/main.js')
         .pipe(webpack({
@@ -17,7 +18,7 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('styles', function () {
-    return gulp.src(['src/css/*']).pipe(gulp.dest('dist')).pipe(stream());
+    return gulp.src([cssSources]).pipe(gulp.dest('dist')).pipe(stream());
 });
 
 gulp.task('index', ['styles', 'scripts'], function () {
@@ -34,8 +35,8 @@ gulp.task('server', ['index'], function () {
 
 
 gulp.task('watch', ['server'], function () {
-    gulp.watch('src/js/*.*', ['scripts']);
-    gulp.watch('src/css/*.*', ['styles']);
+    gulp.watch('src/js/**/*', ['scripts']);
+    gulp.watch(cssSources, ['styles']);
     gulp.watch('src/index.html').on('change', browserSync.reload);
 });
 
