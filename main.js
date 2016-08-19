@@ -65,11 +65,14 @@
 	var tabsContainer = document.querySelector(".tab__bars");
 
 	tabsContainer.onclick = function (evt) {
-	    bars[selectedIndex].classList.remove("tab__bar--selected");
-	    contents[selectedIndex].classList.remove("tab__content--selected");
-	    selectedIndex = indexOf(evt.target);
-	    bars[selectedIndex].classList.add("tab__bar--selected");
-	    contents[selectedIndex].classList.add("tab__content--selected");
+	    var tagName = evt.target.tagName.toLowerCase();
+	    if (tagName === 'button') {
+	        bars[selectedIndex].classList.remove("tab__bar--selected");
+	        contents[selectedIndex].classList.remove("tab__content--selected");
+	        selectedIndex = indexOf(evt.target);
+	        bars[selectedIndex].classList.add("tab__bar--selected");
+	        contents[selectedIndex].classList.add("tab__content--selected");
+	    }
 	};
 
 /***/ },
