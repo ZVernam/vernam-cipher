@@ -10,6 +10,7 @@ gulp.task('scripts', function () {
     return gulp.src('src/js/main.js')
         .pipe(webpack({
             output: {filename: 'main.js'},
+            devtool: 'sourcemap',
             resolve: {
                 modulesDirectories: ['node_modules', './src/js']
             }
@@ -22,7 +23,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('index', ['styles', 'scripts'], function () {
-    return gulp.src(['src/index.html', 'src/icons/*']).pipe(gulp.dest('dist'));
+    return gulp.src(['src/index.html', 'src/icons/*']).pipe(gulp.dest('dist')).pipe(stream());
 });
 
 gulp.task('server', ['index'], function () {
@@ -37,7 +38,7 @@ gulp.task('server', ['index'], function () {
 gulp.task('watch', ['server'], function () {
     gulp.watch('src/js/**/*', ['scripts']);
     gulp.watch(cssSources, ['styles']);
-    gulp.watch('src/index.html').on('change', browserSync.reload);
+    gulp.watch('src/index.html', ['index']);
 });
 
 gulp.task('build', ['index']);
