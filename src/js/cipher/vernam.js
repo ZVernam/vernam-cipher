@@ -36,6 +36,9 @@ let xor = function (left, right) {
 module.exports = function (options) {
     return {
         encrypt: function (text, secret) {
+            //Failfast
+            if (!text || !secret) return '';
+
             let cipher = [];
             for (var i = 0; i < text.length; i++) {
                 var result = xor(text.charCodeAt(i), secret.charCodeAt(i % secret.length));
@@ -46,6 +49,8 @@ module.exports = function (options) {
 
         //TODO: are not reversible at the moment
         decrypt: function (cipher, secret) {
+            if (!(cipher && secret)) return '';
+
             let plain = [];
             for (var i = 0; i < cipher.length; i++) {
                 var result = xor(converter.find(cipher[i]), converter.find(secret[i % secret.length]));
