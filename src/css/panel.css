@@ -33,12 +33,26 @@
     flex-direction: row;
 
     justify-content: flex-end;
+}
 
+.panel__group .panel__button {
+    border-left: 0;
+}
+
+.panel__group .panel__input {
+    border-right: 0;
 }
 
 .panel__button {
     display: inline;
     vertical-align: bottom;
 
-    fill: grey;
+    background: #ebebeb;
+    border: 2px #747474 solid;
+
+    padding: 2px 3px 3px 6px;
+}
+
+.panel__button svg {
+    fill: #7F7F7F;
 }
