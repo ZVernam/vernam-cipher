@@ -21,13 +21,24 @@
             </div>
             <div class="panel">
                 <label for="encrypt-secret" class="panel__label">Secret</label>
-                <input id="encrypt-secret" class="panel__input" type="password" placeholder="Secret">
+                <div class="panel__group">
+                    <input id="encrypt-secret" class="panel__input" type="password" placeholder="Secret">
+                    <button id="show-hide-button" class="panel__button" title="Show/Hide Secret">
+                        <svg viewBox="0 0 8 8" width="24" height="24">
+                            <use xlink:href="open-iconic.svg#eye"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="panel">
+                <label for="encrypt-secret-hash" class="panel__label">Secret Hash</label>
+                <input id="encrypt-secret-hash" class="panel__input" type="text" placeholder="Secret Hash" readonly>
             </div>
             <div class="panel">
                 <label for="encrypt-cipher" class="panel__label">Cipher Text</label>
                 <div class="panel__group">
                     <input id="encrypt-cipher" class="panel__input" type="text" placeholder="Cipher Text" readonly>
-                    <button id="copy-to-clipboard" class="panel__button" title="Copy To Clipboard">
+                    <button id="copy-to-clipboard-button" class="panel__button" title="Copy To Clipboard">
                         <svg viewBox="0 0 8 8" width="24" height="24">
                             <use xlink:href="open-iconic.svg#clipboard"></use>
                         </svg>
