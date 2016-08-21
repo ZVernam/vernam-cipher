@@ -48,7 +48,7 @@
 	
 	__webpack_require__(1);
 	__webpack_require__(2);
-	__webpack_require__(7);
+	__webpack_require__(6);
 
 /***/ },
 /* 1 */
@@ -80,23 +80,34 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var vernam = __webpack_require__(3)({});
-	var controller = __webpack_require__(5);
-	let Hashes = __webpack_require__(6);
-	let md5 = new Hashes.MD5();
+	let Hashes = __webpack_require__(5);
 	
 	var text = document.getElementById("encrypt-text");
 	var secret = document.getElementById("encrypt-secret");
 	var secretHash = document.getElementById("encrypt-secret-hash");
 	var cipherText = document.getElementById("encrypt-cipher");
+	var hashAlgorithm = document.getElementById("encrypt-hash-algo");
+	
+	var hash = function () {
+	    var secretValue = secret.value;
+	    var textValue = text.value;
+	    var result = '';
+	    if (secretValue && textValue) {
+	        var algorithmName = hashAlgorithm.value;
+	        console.log(`Using hash-algorithm: ${algorithmName}`);
+	        var hashFunction = new Hashes[algorithmName]();
+	        var base64 = hashFunction.b64(secretValue);
+	        console.log(`Hash Output raw: ${hashFunction.raw(secretValue)}`);
+	        console.log(`Hash Output b64: ${base64}`);
+	        console.log(`Hash Output HEX: ${hashFunction.hex(secretValue)}`);
+	        result = base64;
+	        secretHash.value = result.substr(0, textValue.length);
+	    }
+	    return result;
+	};
 	
 	var update = function () {
-	    var secretValue = secret.value;
-	    var hash;
-	    if (secretValue) {
-	        hash = md5.hex(secretValue);
-	        secretHash.value = hash.substr(0, text.value.length);
-	    }
-	    cipherText.value = vernam.encrypt(text.value, hash);
+	    cipherText.value = vernam.encrypt(text.value, hash());
 	};
 	
 	text.oninput = update;
@@ -200,22 +211,6 @@
 
 /***/ },
 /* 5 */
-/***/ function(module, exports) {
-
-	module.exports = function (action, input, secret, output) {
-	    let update = function () {
-	        var text = input.value;
-	        var key = secret.value;
-	        output.value = action(text, key);
-	    };
-	
-	    input.oninput = update;
-	    secret.onchange = update;
-	};
-
-
-/***/ },
-/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -1987,16 +1982,32 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var vernam = __webpack_require__(3)({});
-	var controller = __webpack_require__(5);
+	var controller = __webpack_require__(7);
 	
 	controller(vernam.encrypt,
 	    document.getElementById("decrypt-cipher"),
 	    document.getElementById("decrypt-secret"),
 	    document.getElementById("decrypt-text"));
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	module.exports = function (action, input, secret, output) {
+	    let update = function () {
+	        var text = input.value;
+	        var key = secret.value;
+	        output.value = action(text, key);
+	    };
+	
+	    input.oninput = update;
+	    secret.onchange = update;
+	};
 
 
 /***/ }
