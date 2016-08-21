@@ -28,6 +28,25 @@
     border: 2px #747474 solid;
 }
 
+.panel__select {
+    width: 60px;
+
+    display: inline;
+    vertical-align: bottom;
+    flex-grow: 1;
+
+    font-family: sans-serif, Arial;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1.3em;
+
+    border: 2px #747474 solid;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 .panel__group {
     display: flex;
     flex-direction: row;

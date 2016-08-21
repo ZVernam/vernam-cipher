@@ -37,7 +37,14 @@
             </div>
             <div class="panel">
                 <label for="encrypt-secret-hash" class="panel__label">Secret Hash</label>
-                <input id="encrypt-secret-hash" class="panel__input" type="text" placeholder="Secret Hash" readonly>
+                <div class="panel__group">
+                    <input id="encrypt-secret-hash" class="panel__input" type="text" placeholder="Secret Hash" readonly>
+                    <select id="encrypt-hash-algo" class="panel__select" title="Hash Algorithm">
+                        <option selected>MD5</option>
+                        <option>SHA-1</option>
+                        <option>SHA256</option>
+                    </select>
+                </div>
             </div>
             <div class="panel">
                 <label for="encrypt-cipher" class="panel__label">Cipher Text</label>
