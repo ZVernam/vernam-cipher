@@ -7,8 +7,11 @@
     <meta name="format-detection" content="telephone=no">
     <title>Vernam Cipher</title>
 </head>
-<body>
-<main class="main">
+<body class="main">
+<header class="header">
+    <h1 class="header__title">Vernam Cipher</h1>
+</header>
+<main>
     <div class="tabs">
         <div class="tab__bars">
             <button class="tab__bar  tab__bar--selected">Encrypt</button>
@@ -17,17 +20,38 @@
         <form id="encrypt" class="tab__content  tab__content--selected">
             <div class="panel">
                 <label for="encrypt-text" class="panel__label">Plain Text</label>
-                <input id="encrypt-text" class="panel__input" type="text" placeholder="Plain Text">
+                <input id="encrypt-text" class="panel__input" type="text"
+                       tabindex="1" placeholder="Plain Text">
             </div>
             <div class="panel">
                 <label for="encrypt-secret" class="panel__label">Secret</label>
-                <input id="encrypt-secret" class="panel__input" type="password" placeholder="Secret">
+                <div class="panel__group">
+                    <input id="encrypt-secret" class="panel__input" type="password"
+                           tabindex="2" placeholder="Secret">
+                    <button id="show-hide-button" class="panel__button" title="Show/Hide Secret">
+                        <svg viewBox="0 0 8 8" width="24" height="24">
+                            <use xlink:href="open-iconic.svg#eye"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="panel">
+                <label for="encrypt-secret-hash" class="panel__label">Secret Hash</label>
+                <div class="panel__group">
+                    <input id="encrypt-secret-hash" class="panel__input" type="text" placeholder="Secret Hash" readonly>
+                    <select id="encrypt-hash-algo" class="panel__select" title="Hash Algorithm">
+                        <option selected>MD5</option>
+                        <option>SHA-1</option>
+                        <option>SHA256</option>
+                    </select>
+                </div>
             </div>
             <div class="panel">
                 <label for="encrypt-cipher" class="panel__label">Cipher Text</label>
                 <div class="panel__group">
-                    <input id="encrypt-cipher" class="panel__input" type="text" placeholder="Cipher Text" readonly>
-                    <button id="copy-to-clipboard" class="panel__button" title="Copy To Clipboard">
+                    <input id="encrypt-cipher" class="panel__input" type="text"
+                           tabindex="3" placeholder="Cipher Text" readonly>
+                    <button id="copy-to-clipboard-button" class="panel__button" title="Copy To Clipboard">
                         <svg viewBox="0 0 8 8" width="24" height="24">
                             <use xlink:href="open-iconic.svg#clipboard"></use>
                         </svg>

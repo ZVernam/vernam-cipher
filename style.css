@@ -1,7 +1,12 @@
 @import "panel.css";
 @import "tab.css";
+@import "header.css";
 
 .main {
     margin: 0 auto;
     width: 280px;
+}
+
+.header {
+    margin: 0 auto;
 }
