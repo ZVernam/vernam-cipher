@@ -1,5 +1,6 @@
 var vernam = require('./../cipher/vernam')({});
 let Hashes = require('jshashes');
+let zxcvbn = require('zxcvbn');
 
 var text = document.getElementById("encrypt-text");
 var secret = document.getElementById("encrypt-secret");
@@ -26,7 +27,11 @@ var hash = function () {
 };
 
 var update = function () {
-    cipherText.value = vernam.encrypt(text.value, hash());
+    var encrypted = vernam.encrypt(text.value, hash());
+    cipherText.value = encrypted;
+    if (encrypted) {
+        console.dir(zxcvbn(encrypted));
+    }
 };
 
 text.oninput = update;
