@@ -6,16 +6,18 @@ var ghpages = require('gh-pages');
 var path = require('path');
 
 const cssSources = 'src/css/*';
+const webPackConfig = {
+    output: {filename: 'main.js'},
+    devtool: 'sourcemap',
+    resolve: {
+        modulesDirectories: ['node_modules', './src/js']
+    }
+};
+var buildFolder = 'dist';
 gulp.task('scripts', function () {
     return gulp.src('src/js/main.js')
-        .pipe(webpack({
-            output: {filename: 'main.js'},
-            devtool: 'sourcemap',
-            resolve: {
-                modulesDirectories: ['node_modules', './src/js']
-            }
-        }))
-        .pipe(gulp.dest('dist')).pipe(stream());
+        .pipe(webpack(webPackConfig))
+        .pipe(gulp.dest(buildFolder)).pipe(stream());
 });
 
 gulp.task('styles', function () {
@@ -23,13 +25,13 @@ gulp.task('styles', function () {
 });
 
 gulp.task('index', ['styles', 'scripts'], function () {
-    return gulp.src(['src/index.html', 'src/icons/*']).pipe(gulp.dest('dist')).pipe(stream());
+    return gulp.src(['src/index.html', 'src/icons/*']).pipe(gulp.dest(buildFolder)).pipe(stream());
 });
 
 gulp.task('server', ['index'], function () {
     browserSync({
         server: {
-            baseDir: 'dist'
+            baseDir: buildFolder
         }
     });
 });
@@ -43,7 +45,7 @@ gulp.task('watch', ['server'], function () {
 
 gulp.task('build', ['index']);
 gulp.task('publish', ['build'], function (end) {
-    ghpages.publish(path.join(__dirname, 'dist'), {
+    ghpages.publish(path.join(__dirname, buildFolder), {
         logger: function (message) {
             console.log(message);
         }
