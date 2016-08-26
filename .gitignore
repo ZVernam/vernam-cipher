@@ -1,6 +1,6 @@
 #project
 .idea
-dist/
+build/
 
 # Logs
 logs
