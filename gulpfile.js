@@ -5,13 +5,17 @@ var stream = browserSync.stream;
 var ghpages = require('gh-pages');
 var path = require('path');
 var del = require('del');
+var concatCSS = require('gulp-concat-css');
+var gutil = require('gulp-util');
+var template = require('gulp-template');
 
 var buildOut = 'build/';
 const config = {
     web: {
         scripts: 'src/js/**/*',
         styles: 'src/css/*',
-        static: ['src/index.html', 'src/icons/*'],
+        images: 'src/icons/*',
+        index: 'src/index.html',
         webpack: {
             main: 'src/js/main.js',
             watch: false,
@@ -29,7 +33,8 @@ const config = {
             dest: buildOut + 'plugin/chrome',
         }
     },
-    dest: buildOut
+    dest: buildOut,
+    production: false,
 };
 
 gulp.task('clean', function () {
@@ -43,12 +48,22 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('styles', function () {
-    return gulp.src([config.web.styles]).pipe(gulp.dest(config.web.dest)).pipe(stream());
+    return gulp.src([config.web.styles])
+        .pipe(config.production ? concatCSS('style.css') : gutil.noop())
+        .pipe(gulp.dest(config.web.dest)).pipe(stream());
 });
 
-gulp.task('static:web', ['styles', 'scripts'], function () {
-    return gulp.src(config.web.static).pipe(gulp.dest(config.web.dest)).pipe(stream());
+gulp.task('images', function () {
+    return gulp.src(config.web.images).pipe(gulp.dest(config.web.dest));
 });
+
+gulp.task('index', function () {
+    return gulp.src(config.web.index)
+        .pipe(template(config.web.webpack))
+        .pipe(gulp.dest(config.web.dest)).pipe(stream());
+});
+
+gulp.task('static:web', ['styles', 'scripts', 'images', 'index']);
 
 gulp.task('server', ['static:web'], function () {
     browserSync({
@@ -61,7 +76,7 @@ gulp.task('server', ['static:web'], function () {
 gulp.task('watch', ['server'], function () {
     gulp.watch(config.web.scripts, ['scripts']);
     gulp.watch(config.web.styles, ['styles']);
-    gulp.watch(config.web.static, ['static:web']);
+    gulp.watch(config.web.index, ['index']);
 });
 
 gulp.task('build:web', ['static:web']);
