@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
     <meta name="format-detection" content="telephone=no">
     <title>Vernam Cipher</title>
 </head>
@@ -11,7 +11,7 @@
 <header class="header">
     <h1 class="header__title">Vernam Cipher</h1>
 </header>
-<main>
+<main class="container">
     <div class="tabs">
         <div class="tab__bars">
             <button class="tab__bar  tab__bar--selected">Encrypt</button>
@@ -40,9 +40,9 @@
                 <div class="panel__group">
                     <input id="encrypt-secret-hash" class="panel__input" type="text" placeholder="Secret Hash" readonly>
                     <select id="encrypt-hash-algo" class="panel__select" title="Hash Algorithm">
-                        <option selected>MD5</option>
+                        <option>MD5</option>
                         <option>SHA1</option>
-                        <option>SHA256</option>
+                        <option selected>SHA256</option>
                     </select>
                 </div>
             </div>
