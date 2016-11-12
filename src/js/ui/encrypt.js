@@ -36,6 +36,7 @@ var update = function () {
 
 text.oninput = update;
 secret.oninput = update;
+hashAlgorithm.onchange = update;
 
 
 document.getElementById('show-hide-button').onclick = function () {
