@@ -12,68 +12,48 @@
     <h1 class="header__title">Vernam Cipher</h1>
 </header>
 <main class="container">
-    <div class="tabs">
-        <div class="tab__bars">
-            <button class="tab__bar  tab__bar--selected">Encrypt</button>
-            <button class="tab__bar">Decrypt</button>
+    <form id="encrypt" class="tab__content  tab__content--selected">
+        <div class="panel">
+            <label for="encrypt-text" class="panel__label">Plain Text</label>
+            <input id="encrypt-text" class="panel__input" type="text"
+                   tabindex="1" placeholder="Plain Text">
         </div>
-        <form id="encrypt" class="tab__content  tab__content--selected">
-            <div class="panel">
-                <label for="encrypt-text" class="panel__label">Plain Text</label>
-                <input id="encrypt-text" class="panel__input" type="text"
-                       tabindex="1" placeholder="Plain Text">
+        <div class="panel">
+            <label for="encrypt-secret" class="panel__label">Secret</label>
+            <div class="panel__group">
+                <input id="encrypt-secret" class="panel__input" type="password"
+                       tabindex="2" placeholder="Secret">
+                <button id="show-hide-button" class="panel__button" title="Show/Hide Secret">
+                    <svg viewBox="0 0 8 8" width="24" height="24">
+                        <use xlink:href="open-iconic.svg#eye"></use>
+                    </svg>
+                </button>
             </div>
-            <div class="panel">
-                <label for="encrypt-secret" class="panel__label">Secret</label>
-                <div class="panel__group">
-                    <input id="encrypt-secret" class="panel__input" type="password"
-                           tabindex="2" placeholder="Secret">
-                    <button id="show-hide-button" class="panel__button" title="Show/Hide Secret">
-                        <svg viewBox="0 0 8 8" width="24" height="24">
-                            <use xlink:href="open-iconic.svg#eye"></use>
-                        </svg>
-                    </button>
-                </div>
+        </div>
+        <div class="panel">
+            <label for="encrypt-secret-hash" class="panel__label">Secret Hash</label>
+            <div class="panel__group">
+                <input id="encrypt-secret-hash" class="panel__input" type="text" placeholder="Secret Hash" readonly>
+                <select id="encrypt-hash-algo" class="panel__select" title="Hash Algorithm">
+                    <option>MD5</option>
+                    <option>SHA1</option>
+                    <option selected>SHA256</option>
+                </select>
             </div>
-            <div class="panel">
-                <label for="encrypt-secret-hash" class="panel__label">Secret Hash</label>
-                <div class="panel__group">
-                    <input id="encrypt-secret-hash" class="panel__input" type="text" placeholder="Secret Hash" readonly>
-                    <select id="encrypt-hash-algo" class="panel__select" title="Hash Algorithm">
-                        <option>MD5</option>
-                        <option>SHA1</option>
-                        <option selected>SHA256</option>
-                    </select>
-                </div>
+        </div>
+        <div class="panel">
+            <label for="encrypt-cipher" class="panel__label">Cipher Text</label>
+            <div class="panel__group">
+                <input id="encrypt-cipher" class="panel__input" type="text"
+                       tabindex="3" placeholder="Cipher Text" readonly>
+                <button id="copy-to-clipboard-button" class="panel__button" title="Copy To Clipboard">
+                    <svg viewBox="0 0 8 8" width="24" height="24">
+                        <use xlink:href="open-iconic.svg#clipboard"></use>
+                    </svg>
+                </button>
             </div>
-            <div class="panel">
-                <label for="encrypt-cipher" class="panel__label">Cipher Text</label>
-                <div class="panel__group">
-                    <input id="encrypt-cipher" class="panel__input" type="text"
-                           tabindex="3" placeholder="Cipher Text" readonly>
-                    <button id="copy-to-clipboard-button" class="panel__button" title="Copy To Clipboard">
-                        <svg viewBox="0 0 8 8" width="24" height="24">
-                            <use xlink:href="open-iconic.svg#clipboard"></use>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </form>
-        <form id="decrypt" class="tab__content">
-            <div class="panel">
-                <label for="decrypt-cipher" class="panel__label">Cipher Text</label>
-                <input id="decrypt-cipher" class="panel__input" type="text" placeholder="Plain Text">
-            </div>
-            <div class="panel">
-                <label for="decrypt-secret" class="panel__label">Secret</label>
-                <input id="decrypt-secret" class="panel__input" type="password" placeholder="Secret">
-            </div>
-            <div class="panel">
-                <label for="decrypt-text" class="panel__label">Decoded Text</label>
-                <input id="decrypt-text" class="panel__input" type="text" placeholder="Cipher Text" readonly>
-            </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </main>
 <script type="application/javascript" src="main.js"></script>
 </body>
