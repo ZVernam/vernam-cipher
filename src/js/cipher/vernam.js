@@ -1,4 +1,4 @@
-const Hashes = require(`jshashes`);
+const Hashes = require('jshashes'); // eslint-disable-line quotes
 
 class Converter {
   constructor(alphabet) {
@@ -20,9 +20,9 @@ class Converter {
   }
 }
 
-let converter = new Converter(require(`./cryptic`));
+const converter = new Converter(require('./cryptic')); // eslint-disable-line quotes
 
-let xor = function (left, right) {
+const xor = function (left, right) {
   return left ^ right;
 };
 
