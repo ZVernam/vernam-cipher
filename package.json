@@ -4,7 +4,7 @@
   "description": "Vernam cipher JS implementation",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "eslint src/js && mocha",
     "build": "gulp clean && gulp build",
     "start": "gulp watch",
     "publish": "gulp publish"
@@ -26,6 +26,8 @@
   "devDependencies": {
     "browser-sync": "2.18.8",
     "del": "2.2.2",
+    "eslint": "3.16.1",
+    "eslint-config-htmlacademy": "0.2.2",
     "gh-pages": "0.12.0",
     "gulp": "3.9.1",
     "gulp-concat-css": "2.3.0",
