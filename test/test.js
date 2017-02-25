@@ -1,5 +1,5 @@
-var assert = require('assert');
-var vernam = require('../src/js/cipher/vernam');
+const assert = require('assert');
+const vernam = require('../src/js/cipher/vernam');
 describe('Vernam cipher', function() {
     describe('#encrypt()', function() {
         it('should encrypt text with given key', function() {

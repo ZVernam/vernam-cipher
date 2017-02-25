@@ -6,7 +6,7 @@ class Converter {
     }
 
     find(char) {
-        for (var i = 0; i < this.alphabet.length; i++) {
+        for (let i = 0; i < this.alphabet.length; i++) {
             if (char === alphabet[i]) {
                 return i;
             }
@@ -40,8 +40,8 @@ module.exports = function (options) {
             if (!text || !secret) return '';
 
             let cipher = [];
-            for (var i = 0; i < text.length; i++) {
-                var result = xor(text.charCodeAt(i), secret.charCodeAt(i % secret.length));
+            for (let i = 0; i < text.length; i++) {
+                const result = xor(text.charCodeAt(i), secret.charCodeAt(i % secret.length));
                 cipher.push(converter.toChar(result));
             }
             return cipher.join('');
@@ -52,8 +52,8 @@ module.exports = function (options) {
             if (!(cipher && secret)) return '';
 
             let plain = [];
-            for (var i = 0; i < cipher.length; i++) {
-                var result = xor(converter.find(cipher[i]), converter.find(secret[i % secret.length]));
+            for (let i = 0; i < cipher.length; i++) {
+                const result = xor(converter.find(cipher[i]), converter.find(secret[i % secret.length]));
                 plain.push(String.fromCharCode(result));
             }
             return plain;
