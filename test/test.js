@@ -1,5 +1,5 @@
-const assert = require('assert');
-const vernam = require('../src/js/cipher/vernam')({});
+import assert from 'assert';
+import vernam from '../src/js/cipher/vernam';
 
 const encode = vernam.encrypt;
 const decode = vernam.decrypt;

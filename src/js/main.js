@@ -1,5 +1,5 @@
-const vernam = require('./cipher/vernam')({}); // eslint-disable-line quotes
-const zxcvbn = require('zxcvbn'); // eslint-disable-line quotes
+import vernam from './cipher/vernam';
+import zxcvbn from 'zxcvbn';
 
 const text = document.getElementById(`encrypt-text`);
 const secret = document.getElementById(`encrypt-secret`);

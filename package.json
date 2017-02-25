@@ -4,7 +4,7 @@
   "description": "Vernam cipher JS implementation",
   "main": "index.js",
   "scripts": {
-    "test": "eslint src/js && mocha",
+    "test": "eslint src/js && mocha-webpack",
     "build": "gulp clean && gulp build",
     "start": "gulp watch",
     "publish": "gulp publish"
@@ -34,6 +34,7 @@
     "gulp-template": "4.0.0",
     "gulp-util": "3.0.8",
     "mocha": "3.2.0",
+    "mocha-webpack": "1.0.0-beta.1",
     "webpack": "2.2.1",
     "webpack-stream": "3.2.0"
   },
