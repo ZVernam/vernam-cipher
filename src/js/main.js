@@ -1,8 +1,5 @@
-
-
 const vernam = require(`./cipher/vernam`)({});
-let Hashes = require(`jshashes`);
-let zxcvbn = require(`zxcvbn`);
+const zxcvbn = require(`zxcvbn`);
 
 const text = document.getElementById(`encrypt-text`);
 const secret = document.getElementById(`encrypt-secret`);
@@ -15,14 +12,7 @@ const hash = function () {
   const textValue = text.value;
   let result = ``;
   if (secretValue && textValue) {
-    const algorithmName = hashAlgorithm.value;
-    console.log(`Using hash-algorithm: ${algorithmName}`);
-    const hashFunction = new Hashes[algorithmName]();
-    const base64 = hashFunction.b64(secretValue);
-    console.log(`Hash Output raw: ${hashFunction.raw(secretValue)}`);
-    console.log(`Hash Output b64: ${base64}`);
-    console.log(`Hash Output HEX: ${hashFunction.hex(secretValue)}`);
-    result = base64;
+    result = vernam.hash(secretValue, hashAlgorithm.value);
     secretHash.value = result.substr(0, textValue.length);
   }
   return result;
