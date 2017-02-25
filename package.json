@@ -24,20 +24,20 @@
   },
   "homepage": "https://github.com/zeckson/vernam-cipher#readme",
   "devDependencies": {
-    "browser-sync": "2.14.0",
+    "browser-sync": "2.18.8",
     "del": "2.2.2",
-    "gh-pages": "0.11.0",
+    "gh-pages": "0.12.0",
     "gulp": "3.9.1",
     "gulp-concat-css": "2.3.0",
     "gulp-template": "4.0.0",
-    "gulp-util": "3.0.7",
-    "mocha": "3.0.2",
-    "webpack": "1.13.1",
+    "gulp-util": "3.0.8",
+    "mocha": "3.2.0",
+    "webpack": "2.2.1",
     "webpack-stream": "3.2.0"
   },
   "dependencies": {
-    "jshashes": "1.0.5",
+    "jshashes": "1.0.6",
     "open-iconic": "^1.1.1",
-    "zxcvbn": "4.3.0"
+    "zxcvbn": "4.4.2"
   }
 }
