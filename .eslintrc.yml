@@ -2,4 +2,11 @@ parserOptions:
   ecmaVersion: 2015
   sourceType: module
 
+env:
+    browser: true
+    commonjs: true
+
 extends: 'htmlacademy/es6'
+
+rules:
+  no-console: 'off'

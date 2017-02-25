@@ -7,7 +7,7 @@ class Converter {
 
   find(char) {
     for (let i = 0; i < this.alphabet.length; i++) {
-      if (char === alphabet[i]) {
+      if (char === this.alphabet[i]) {
         return i;
       }
     }
@@ -30,10 +30,9 @@ let xor = function (left, right) {
  * {
  *  reversible: boolean — makes algorithm reversible
  * }
- * @param options
- * @returns {{encrypt: encrypt, decrypt: decrypt}}
+ * @return {{encrypt: encrypt, decrypt: decrypt}}
  */
-module.exports = function (options) {
+module.exports = function () {
   return {
     encrypt(text, secret) {
             // Failfast
