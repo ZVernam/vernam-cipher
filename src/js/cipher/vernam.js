@@ -1,4 +1,4 @@
-
+const Hashes = require(`jshashes`);
 
 class Converter {
   constructor(alphabet) {
@@ -15,7 +15,7 @@ class Converter {
   }
 
   toChar(i) {
-        // TODO: test and fix negative values
+    // TODO: test and fix negative values
     return this.alphabet[i % this.alphabet.length];
   }
 }
@@ -35,7 +35,7 @@ let xor = function (left, right) {
 module.exports = function () {
   return {
     encrypt(text, secret) {
-            // Failfast
+      // Failfast
       if (!text || !secret) {
         return ``;
       }
@@ -48,7 +48,7 @@ module.exports = function () {
       return cipher.join(``);
     },
 
-        // TODO: are not reversible at the moment
+    // TODO: are not reversible at the moment
     decrypt(cipher, secret) {
       if (!(cipher && secret)) {
         return ``;
@@ -60,6 +60,32 @@ module.exports = function () {
         plain.push(String.fromCharCode(result));
       }
       return plain;
+    },
+
+    /**
+     * Hashes provided input by default with `SHA-256`, converts to `Base64`
+     * and trims to source string length by default
+     * @param {String} text — text to hash
+     * @param {String} [algoName=`SHA256`] — hash algorithm name
+     * @return {string}
+     */
+    hash(text, algoName = `SHA256`) {
+      if (!text) {
+        return text;
+      }
+
+      if (!Hashes[algoName]) {
+        throw new Error(`Unknown algorithm name: ${algoName}`);
+      }
+      const hashFunction = new Hashes[algoName]();
+      const base64 = hashFunction.b64(text);
+
+      console.log(`Using hash-algorithm: ${algoName}`);
+      console.log(`Hash Output raw: ${hashFunction.raw(text)}`);
+      console.log(`Hash Output b64: ${base64}`);
+      console.log(`Hash Output HEX: ${hashFunction.hex(text)}`);
+
+      return base64;
     }
   };
 };
