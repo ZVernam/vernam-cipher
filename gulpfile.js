@@ -1,15 +1,15 @@
-var gulp = require('gulp');
-var webpack = require('webpack-stream');
-var browserSync = require('browser-sync');
-var stream = browserSync.stream;
-var ghpages = require('gh-pages');
-var path = require('path');
-var del = require('del');
-var concatCSS = require('gulp-concat-css');
-var gutil = require('gulp-util');
-var template = require('gulp-template');
+const gulp = require('gulp');
+const webpack = require('webpack-stream');
+const browserSync = require('browser-sync');
+const stream = browserSync.stream;
+const ghpages = require('gh-pages');
+const path = require('path');
+const del = require('del');
+const concatCSS = require('gulp-concat-css');
+const gutil = require('gulp-util');
+const template = require('gulp-template');
 
-var buildOut = 'build/';
+const buildOut = 'build/';
 const config = {
     web: {
         scripts: 'src/js/**/*',
