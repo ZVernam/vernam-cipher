@@ -12,8 +12,8 @@ Features:
 
 Todo:
 - [x] Browser implemenation
-- [] Hash function usage
-- [] Usage Examples
-- [] Tests
-- [] Node.js library compatible
-- [] NPM distribution
+- [ ] Hash function usage
+- [ ] Usage Examples
+- [ ] Tests
+- [ ] Node.js library compatible
+- [ ] NPM distribution
