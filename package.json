@@ -1,6 +1,6 @@
 {
   "name": "vernam-cipher",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Vernam cipher JS implementation",
   "main": "index.js",
   "scripts": {
