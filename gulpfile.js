@@ -50,7 +50,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('images', function () {
-  return gulp.src(config.web.images).pipe(gulp.dest(config.web.dest));
+  return gulp.src([config.web.images, 'src/favicon.ico']).pipe(gulp.dest(config.web.dest));
 });
 
 gulp.task('index', function () {
