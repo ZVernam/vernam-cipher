@@ -42,7 +42,7 @@ document.getElementById(`copy-to-clipboard-button`).onclick = function (e) {
   cipherText.select();
   const success = document.execCommand(`copy`);
   if (success) {
-    console.log(`\'${cipherText.value}\' copied to clipboard!`);
+    console.log(`'${cipherText.value}' copied to clipboard!`);
   } else {
     console.error(`Failed to copy to clipboard!`);
   }
