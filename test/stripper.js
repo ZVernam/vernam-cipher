@@ -16,7 +16,7 @@ const testUrls = [
 describe('URI Stripper',  () => {
   for(const url of testUrls) {
     it(`should strip ${url[0]} to ${url[1]}`, () => {
-      assert(url[1], stripper(url[0]));
+      assert.equal(url[1], stripper(url[0]));
     })
   }
 });

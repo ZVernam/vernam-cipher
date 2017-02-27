@@ -15,13 +15,13 @@ const parse = (url) => {
     ].join(``));
     const match = url.match(reURLInformation);
     return match && {
-      protocol: match[1],
-      host: match[2],
-      hostname: match[3],
-      port: match[4],
-      pathname: match[5],
-      search: match[6],
-      hash: match[7]
+      protocol: match[2],
+      host: match[3],
+      hostname: match[4],
+      port: match[5],
+      pathname: match[6],
+      search: match[7],
+      hash: match[8]
     };
   }
 };
@@ -31,7 +31,9 @@ export default (url, excludeWWW = true) => {
 
   if (excludeWWW) {
     const wwwIndex = domain.indexOf(WWW_PART);
-    domain = domain.substring(wwwIndex + WWW_PART.length, domain.length);
+
+    domain = wwwIndex >= 0 ?
+        domain.substring(wwwIndex + WWW_PART.length + 1, domain.length) : domain;
   }
 
   return domain;
