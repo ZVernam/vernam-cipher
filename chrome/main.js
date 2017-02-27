@@ -8,4 +8,6 @@ window.onload = () => {
     const text = document.getElementById(`encrypt-text`);
     text.value = stripper(selectedUrl);
   }
+
+  document.getElementById(`encrypt-secret`).focus();
 };
