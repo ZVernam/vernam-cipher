@@ -1,4 +1,4 @@
-const WWW_PART = `www`;
+const WWW_PART = `www.`;
 const URL_REGEXP = new RegExp([
   `^((http|mailto|chrome)s?:)//`, // protocol
   `(([^:/?#]*)(?::([0-9]+))?)`, // host (hostname and port)
@@ -28,7 +28,7 @@ export default (url, excludeWWW = true) => {
     const wwwIndex = domain.indexOf(WWW_PART);
 
     domain = wwwIndex >= 0 ?
-        domain.substring(wwwIndex + WWW_PART.length + 1, domain.length) : domain;
+        domain.substring(wwwIndex + WWW_PART.length, domain.length) : domain;
   }
 
   return domain;
