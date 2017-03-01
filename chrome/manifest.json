@@ -5,13 +5,8 @@
   "description": "This extension generates domain specific password via Vernam Cipher",
   "version": "0.2",
 
-  "background" : {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
-
   // Page action controls UI control
-  "page_action": {
+  "browser_action": {
     "default_icon": {
       "16": "icon_16.png",
       "32": "icon_32.png",

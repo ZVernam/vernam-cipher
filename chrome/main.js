@@ -2,12 +2,12 @@ import '../src/js/main';
 import stripper from '../src/js/url/stripper';
 
 window.onload = () => {
-  const selectedUrl = chrome.extension.getBackgroundPage().selectedUrl;
+  const text = document.getElementById(`encrypt-text`);
+  const secret = document.getElementById(`encrypt-secret`);
 
-  if (selectedUrl) {
-    const text = document.getElementById(`encrypt-text`);
-    text.value = stripper(selectedUrl);
-  }
-
-  document.getElementById(`encrypt-secret`).focus();
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const url = tabs[0].url;
+    text.value = stripper(url);
+    secret.focus();
+  });
 };
