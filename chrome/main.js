@@ -1,5 +1,5 @@
 import '../src/js/main';
-import stripper from '../src/js/url/stripper';
+import stripper from '../lib/src/url/parser';
 
 window.onload = () => {
   const text = document.getElementById(`encrypt-text`);

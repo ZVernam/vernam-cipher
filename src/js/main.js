@@ -1,4 +1,4 @@
-import vernam from './cipher/vernam';
+import vernam from '../../lib/src/cipher/vernam';
 import zxcvbn from 'zxcvbn';
 
 const text = document.getElementById(`encrypt-text`);
