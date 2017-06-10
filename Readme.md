@@ -4,6 +4,8 @@
 JavaScript implementation of [Vernam Cipher](https://en.wikipedia.org/wiki/Gilbert_Vernam#The_Vernam_cipher) with some extended technique which make it unbreakable. This implementation is used for irreversible password generation.
 Instead of thousand words https://xkcd.com/936/
 
+Strength estimation is provided by [zxcvbn](https://github.com/dropbox/zxcvbn) library. More detailed description can be found [here](https://blogs.dropbox.com/tech/2012/04/zxcvbn-realistic-password-strength-estimation/).
+
 Features:
 - irreversible (because of module of alphabet)
 - md5 password hash (frequent analysis proof)
