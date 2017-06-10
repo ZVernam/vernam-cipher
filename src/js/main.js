@@ -1,5 +1,6 @@
 import vernam from './cipher/vernam';
 import zxcvbn from 'zxcvbn';
+import summary from './summary';
 
 const text = document.getElementById(`encrypt-text`);
 const secret = document.getElementById(`encrypt-secret`);
@@ -22,7 +23,7 @@ const update = function () {
   const encrypted = vernam.encrypt(text.value, hash());
   cipherText.value = encrypted;
   if (encrypted) {
-    console.dir(zxcvbn(encrypted));
+    summary.update(zxcvbn(encrypted));
   }
 };
 
