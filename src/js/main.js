@@ -19,8 +19,13 @@ const hash = function () {
   return result;
 };
 
+const textHash = function () {
+  const fullHash = vernam.hash(text.value, hashAlgorithm.value);
+  return fullHash.slice(0, text.value.length);
+};
+
 const update = function () {
-  const encrypted = vernam.encrypt(text.value, hash());
+  const encrypted = vernam.encrypt(textHash(), hash());
   cipherText.value = encrypted;
   if (encrypted) {
     summary.update(zxcvbn(encrypted));
