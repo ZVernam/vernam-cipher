@@ -1,8 +1,8 @@
-let passwordLengthNode = document.getElementById(`password-length`);
-let guessesNode = document.getElementById(`guesses`);
-let guessesLogNode = document.getElementById(`guesses-log`);
-let calcTimeNode = document.getElementById(`calctime`);
-let scoreNode = document.getElementById(`score`);
+const passwordLengthNode = document.getElementById(`password-length`);
+const guessesNode = document.getElementById(`guesses`);
+const guessesLogNode = document.getElementById(`guesses-log`);
+const calcTimeNode = document.getElementById(`calctime`);
+const scoreNode = document.getElementById(`score`);
 
 export default {
   update(newSummary) {
