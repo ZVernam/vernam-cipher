@@ -3,6 +3,8 @@ import zxcvbn from 'zxcvbn';
 import summary from './summary';
 import {shortHash} from './util';
 
+let hashText = false;
+
 const text = document.getElementById(`encrypt-text`);
 const secret = document.getElementById(`encrypt-secret`);
 const secretHash = document.getElementById(`encrypt-secret-hash`);
@@ -15,16 +17,14 @@ const hashOfSecret = function () {
   let result = ``;
   if (secretValue && textValue) {
     result = vernam.hash(secretValue, hashAlgorithm.value);
-    secretHash.value = result.substr(0, textValue.length);
-  } else {
-    secretHash.value = result.substr(0, textValue.length);
   }
+  secretHash.value = result.substr(0, textValue.length);
   return result;
 };
 
 
 const update = function () {
-  const textHash = shortHash(text.value, hashAlgorithm.value);
+  const textHash = hashText ? shortHash(text.value, hashAlgorithm.value) : text.value;
   const encrypted = vernam.encrypt(textHash, hashOfSecret());
   cipherText.value = encrypted;
   if (encrypted) {
@@ -36,6 +36,14 @@ text.oninput = update;
 secret.oninput = update;
 hashAlgorithm.onchange = update;
 
+document.getElementById(`hash-unhash-button`).onclick = function () {
+  hashText = !hashText;
+  const useElement = this.querySelector(`use`);
+  const icon = `open-iconic.svg#lock-${hashText ? `locked` : `unlocked`}`;
+  useElement.setAttribute(`xlink:href`, icon);
+  update();
+  return false;
+};
 
 document.getElementById(`show-hide-button`).onclick = function () {
   const type = secret.type.toLowerCase();
