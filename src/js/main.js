@@ -1,6 +1,7 @@
 import vernam from './cipher/vernam';
 import zxcvbn from 'zxcvbn';
 import summary from './summary';
+import {shortHash} from './util';
 
 const text = document.getElementById(`encrypt-text`);
 const secret = document.getElementById(`encrypt-secret`);
@@ -8,24 +9,23 @@ const secretHash = document.getElementById(`encrypt-secret-hash`);
 const cipherText = document.getElementById(`encrypt-cipher`);
 const hashAlgorithm = document.getElementById(`encrypt-hash-algo`);
 
-const hash = function () {
+const hashOfSecret = function () {
   const secretValue = secret.value;
   const textValue = text.value;
   let result = ``;
   if (secretValue && textValue) {
     result = vernam.hash(secretValue, hashAlgorithm.value);
     secretHash.value = result.substr(0, textValue.length);
+  } else {
+    secretHash.value = result.substr(0, textValue.length);
   }
   return result;
 };
 
-const textHash = function () {
-  const fullHash = vernam.hash(text.value, hashAlgorithm.value);
-  return fullHash.slice(0, text.value.length);
-};
 
 const update = function () {
-  const encrypted = vernam.encrypt(textHash(), hash());
+  const textHash = shortHash(text.value, hashAlgorithm.value);
+  const encrypted = vernam.encrypt(textHash, hashOfSecret());
   cipherText.value = encrypted;
   if (encrypted) {
     summary.update(zxcvbn(encrypted));
