@@ -19,8 +19,15 @@
     <form id="encrypt" class="tab__content  tab__content--selected">
         <div class="panel">
             <label for="encrypt-text" class="panel__label">Plain Text</label>
-            <input id="encrypt-text" class="panel__input" type="text"
-                   tabindex="1" placeholder="Plain Text">
+            <div class="panel__group">
+                <input id="encrypt-text" class="panel__input" type="text"
+                                              tabindex="1" placeholder="Plain Text">
+                <button id="hash-unhash-button" class="panel__button" title="Hash/Plain text">
+                    <svg viewBox="0 0 8 8" width="24" height="24">
+                        <use xlink:href="open-iconic.svg#lock-unlocked"></use>
+                    </svg>
+                </button>
+            </div>
         </div>
         <div class="panel">
             <label for="encrypt-secret" class="panel__label">Secret</label>
