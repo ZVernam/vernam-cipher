@@ -42,17 +42,6 @@
             </div>
         </div>
         <div class="panel">
-            <label for="encrypt-secret-hash" class="panel__label">Secret Hash</label>
-            <div class="panel__group">
-                <input id="encrypt-secret-hash" class="panel__input" type="text" placeholder="Secret Hash" readonly>
-                <select id="encrypt-hash-algo" class="panel__select" title="Hash Algorithm">
-                    <option>MD5</option>
-                    <option>SHA1</option>
-                    <option selected>SHA256</option>
-                </select>
-            </div>
-        </div>
-        <div class="panel">
             <label for="encrypt-cipher" class="panel__label">Cipher Text</label>
             <div class="panel__group">
                 <input id="encrypt-cipher" class="panel__input" type="text"
@@ -72,24 +61,32 @@
     </button>
     <div id="expand-collapse-content" class="summary  collapsed">
         <div class="summary-row">
+            <b>Text-Hash:</b>
+            <span id="text-hash">-</span>
+        </div>
+        <div class="summary-row">
+            <b>Secret-Hash:</b>
+            <span id="secret-hash">-</span>
+        </div>
+        <div class="summary-row">
             <b>Length:</b>
-            <span id='password-length'>0</span>
+            <span id="password-length">0</span>
         </div>
         <div class="summary-row">
             <b>Guesses:</b>
-            <span id='guesses'>0</span>
+            <span id="guesses">0</span>
         </div>
         <div class="summary-row">
             <b>Guesses-log(10):</b>
-            <span id='guesses-log'>0</span>
+            <span id="guesses-log">0</span>
         </div>
         <div class="summary-row">
             <b>Calc-time:</b>
-            <span id='calctime'>0</span>
+            <span id="calctime">0</span>
         </div>
         <div class="summary-row">
             <b>Score:</b>
-            <span id='score'>0</span>
+            <span id="score">0</span>
         </div>
     </div>
 </main>

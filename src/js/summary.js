@@ -1,5 +1,7 @@
 const COLLAPSED_CLASS_NAME = `collapsed`;
 
+const textHashNode = document.getElementById(`text-hash`);
+const secretHashNode = document.getElementById(`secret-hash`);
 const passwordLengthNode = document.getElementById(`password-length`);
 const guessesNode = document.getElementById(`guesses`);
 const guessesLogNode = document.getElementById(`guesses-log`);
@@ -18,11 +20,13 @@ document.getElementById(`expand-collapse-button`).onclick = function () {
 };
 
 export default {
-  update(newSummary) {
-    passwordLengthNode.textContent = newSummary.password.length;
-    guessesNode.textContent = newSummary.guesses;
-    guessesLogNode.textContent = newSummary.guesses_log10;
-    calcTimeNode.textContent = newSummary.calc_time;
-    scoreNode.textContent = newSummary.score;
+  update(summary) {
+    textHashNode.textContent = summary.text_hash;
+    secretHashNode.textContent = summary.secret_hash.substring(0, summary.text_hash.length);
+    passwordLengthNode.textContent = summary.password.length;
+    guessesNode.textContent = summary.guesses;
+    guessesLogNode.textContent = summary.guesses_log10;
+    calcTimeNode.textContent = summary.calc_time;
+    scoreNode.textContent = summary.score;
   }
 };

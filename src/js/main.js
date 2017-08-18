@@ -5,36 +5,38 @@ import {shortHash} from './util';
 
 let hashText = false;
 
+const HASH_ALGORITHM = `SHA256`;
+
 const text = document.getElementById(`encrypt-text`);
 const secret = document.getElementById(`encrypt-secret`);
-const secretHash = document.getElementById(`encrypt-secret-hash`);
 const cipherText = document.getElementById(`encrypt-cipher`);
-const hashAlgorithm = document.getElementById(`encrypt-hash-algo`);
 
 const hashOfSecret = function () {
   const secretValue = secret.value;
   const textValue = text.value;
   let result = ``;
   if (secretValue && textValue) {
-    result = vernam.hash(secretValue, hashAlgorithm.value);
+    result = vernam.hash(secretValue, HASH_ALGORITHM);
   }
-  secretHash.value = result.substr(0, textValue.length);
   return result;
 };
 
 
 const update = function () {
-  const textHash = hashText ? shortHash(text.value, hashAlgorithm.value) : text.value;
-  const encrypted = vernam.encrypt(textHash, hashOfSecret());
+  const textHash = hashText ? shortHash(text.value, HASH_ALGORITHM) : text.value;
+  const secretHash = hashOfSecret();
+  const encrypted = vernam.encrypt(textHash, secretHash);
   cipherText.value = encrypted;
   if (encrypted) {
-    summary.update(zxcvbn(encrypted));
+    const stats = zxcvbn(encrypted);
+    stats.text_hash = textHash;
+    stats.secret_hash = secretHash;
+    summary.update(stats);
   }
 };
 
 text.oninput = update;
 secret.oninput = update;
-hashAlgorithm.onchange = update;
 
 document.getElementById(`hash-unhash-button`).onclick = function () {
   hashText = !hashText;
