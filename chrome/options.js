@@ -21,6 +21,12 @@ const save = () => {
   });
 };
 
+const reset = () => {
+  patternElement.value = DEFAULT_PATTERN;
+  tokenElement.value = DEFAULT_TOKEN;
+  save();
+};
+
 // Restores preferences stored in chrome.storage.
 const restore = () => {
   storage.get({
@@ -36,3 +42,4 @@ const restore = () => {
 
 document.addEventListener('DOMContentLoaded', restore);
 document.getElementById('save').addEventListener('click', save);
+document.getElementById('reset').addEventListener('click', reset);

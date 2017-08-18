@@ -3,7 +3,7 @@
 
   "name": "Vernam Cipher",
   "description": "This extension generates domain specific password via Vernam Cipher",
-  "version": "0.3",
+  "version": "0.4",
 
   // Page action controls UI control
   "browser_action": {
