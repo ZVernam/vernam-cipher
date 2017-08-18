@@ -1,0 +1,14 @@
+.summary__expand-button {
+    width: 100%;
+
+    background-color: transparent;
+    border: 0;
+    font-size: 16px;
+    text-align: left;
+
+    outline: none;
+}
+
+.collapsed {
+    display: none;
+}
