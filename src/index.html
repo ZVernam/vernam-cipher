@@ -17,7 +17,7 @@
 </header>
 <main class="container">
     <form id="encrypt" class="tab__content  tab__content--selected">
-        <div class="panel">
+        <div class="panel" id="encrypt-text-panel">
             <label for="encrypt-text" class="panel__label">Plain Text</label>
             <div class="panel__group">
                 <input id="encrypt-text" class="panel__input" type="text"
@@ -57,7 +57,8 @@
     <button id="expand-collapse-button" class="summary__expand-button" title="Expand/Collapse Summary">
         <svg viewBox="0 0 8 8" width="12" height="12">
             <use xlink:href="open-iconic.svg#caret-right"></use>
-        </svg>Summary
+        </svg>
+        Summary
     </button>
     <div id="expand-collapse-content" class="summary  collapsed">
         <div class="summary-row">

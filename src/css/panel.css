@@ -81,3 +81,14 @@
 .panel__button svg {
     fill: #7F7F7F;
 }
+
+.panel__link {
+    color: rgb(0, 0, 238);
+    margin-right: auto;
+    text-decoration: dashed;
+    border-bottom: 1px dashed rgb(0, 0, 238);
+}
+
+.panel__link:visited {
+    color: rgb(0, 0, 238);
+}
