@@ -3,28 +3,16 @@ import zxcvbn from 'zxcvbn';
 import summary from './summary';
 import {shortHash} from './util';
 
-let hashText = false;
-
 const HASH_ALGORITHM = `SHA256`;
 
 const text = document.getElementById(`encrypt-text`);
 const secret = document.getElementById(`encrypt-secret`);
 const cipherText = document.getElementById(`encrypt-cipher`);
 
-const hashOfSecret = function () {
-  const secretValue = secret.value;
-  const textValue = text.value;
-  let result = ``;
-  if (secretValue && textValue) {
-    result = vernam.hash(secretValue, HASH_ALGORITHM);
-  }
-  return result;
-};
-
-
-const update = function () {
+let hashText = false;
+const update = () => {
   const textHash = hashText ? shortHash(text.value, HASH_ALGORITHM) : text.value;
-  const secretHash = hashOfSecret();
+  const secretHash = vernam.hash(secret.value, HASH_ALGORITHM);
   const encrypted = vernam.encrypt(textHash, secretHash);
   cipherText.value = encrypted;
   if (encrypted) {
@@ -49,7 +37,6 @@ document.getElementById(`hash-unhash-button`).onclick = function () {
 
 document.getElementById(`show-hide-button`).onclick = function () {
   const type = secret.type.toLowerCase();
-  console.log(`Secret type: ${type}`);
   secret.type = type === `password` ? `text` : `password`;
   return false;
 };
