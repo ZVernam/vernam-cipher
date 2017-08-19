@@ -5,7 +5,6 @@
   "description": "This extension generates domain specific password via Vernam Cipher",
   "version": "0.4",
 
-  // Page action controls UI control
   "browser_action": {
     "default_icon": {
       "16": "icon_16.png",
@@ -18,9 +17,7 @@
   },
 
   "options_ui": {
-    // Required.
     "page": "options.html",
-    // Recommended.
     "chrome_style": true
   },
 
