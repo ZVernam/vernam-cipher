@@ -8,9 +8,9 @@ window.onload = () => {
 
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     const url = stripper(tabs[0].url);
-    chrome.storage.sync.get(null, (data) => {
-      if (data) {
-        text.value = buildPattern(data.pattern)({site: {url}, user: data.user});
+    chrome.storage.sync.get(null, ({pattern, user}) => {
+      if (pattern && user) {
+        text.value = buildPattern(pattern)({site: {url}, user});
       } else {
         text.value = url;
       }
