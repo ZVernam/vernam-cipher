@@ -1,3 +1,5 @@
+import {updateIcon} from './util';
+
 const COLLAPSED_CLASS_NAME = `collapsed`;
 
 const textHashNode = document.getElementById(`text-hash`);
@@ -10,23 +12,19 @@ const scoreNode = document.getElementById(`score`);
 const expandCollapseContentNode = document.getElementById(`expand-collapse-content`);
 
 let collapsed = expandCollapseContentNode.classList.contains(COLLAPSED_CLASS_NAME);
-document.getElementById(`expand-collapse-button`).onclick = function () {
+const expandCollapseButton = document.getElementById(`expand-collapse-button`);
+expandCollapseButton.onclick = function () {
   collapsed = !collapsed;
-
-  const useElement = this.querySelector(`use`);
-  const icon = `open-iconic.svg#caret-${collapsed ? `right` : `bottom`}`;
-  useElement.setAttribute(`xlink:href`, icon);
+  updateIcon(expandCollapseButton, `caret-${collapsed ? `right` : `bottom`}`);
   expandCollapseContentNode.classList.toggle(COLLAPSED_CLASS_NAME);
 };
 
-export default {
-  update(summary) {
-    textHashNode.textContent = summary.text_hash;
-    secretHashNode.textContent = summary.secret_hash.substring(0, summary.text_hash.length);
-    passwordLengthNode.textContent = summary.password.length;
-    guessesNode.textContent = summary.guesses;
-    guessesLogNode.textContent = summary.guesses_log10;
-    calcTimeNode.textContent = summary.calc_time;
-    scoreNode.textContent = summary.score;
-  }
+export default (summary) => {
+  textHashNode.textContent = summary.text_hash;
+  secretHashNode.textContent = summary.secret_hash.substring(0, summary.text_hash.length);
+  passwordLengthNode.textContent = summary.password.length;
+  guessesNode.textContent = summary.guesses;
+  guessesLogNode.textContent = summary.guesses_log10;
+  calcTimeNode.textContent = summary.calc_time;
+  scoreNode.textContent = summary.score;
 };

@@ -1,7 +1,7 @@
 import vernam from '../../lib/src/cipher/vernam';
 import zxcvbn from 'zxcvbn';
-import summary from './summary';
-import {shortHash} from './util';
+import updateSummary from './summary';
+import {shortHash, updateIcon} from './util';
 
 const HASH_ALGORITHM = `SHA256`;
 
@@ -19,29 +19,32 @@ const update = () => {
     const stats = zxcvbn(encrypted);
     stats.text_hash = textHash;
     stats.secret_hash = secretHash;
-    summary.update(stats);
+    updateSummary(stats);
   }
 };
 
 text.addEventListener(`input`, update);
 secret.addEventListener(`input`, update);
 
-document.getElementById(`hash-unhash-button`).onclick = function () {
+const hashUnhashButton = document.getElementById(`hash-unhash-button`);
+const showHidePasswordButton = document.getElementById(`show-hide-button`);
+const copyToClipboardButton = document.getElementById(`copy-to-clipboard-button`);
+
+
+hashUnhashButton.onclick = () => {
   hashText = !hashText;
-  const useElement = this.querySelector(`use`);
-  const icon = `open-iconic.svg#lock-${hashText ? `locked` : `unlocked`}`;
-  useElement.setAttribute(`xlink:href`, icon);
+  updateIcon(hashUnhashButton, `lock-${hashText ? `` : `un`}locked`);
   update();
   return false;
 };
 
-document.getElementById(`show-hide-button`).onclick = function () {
+showHidePasswordButton.onclick = () => {
   const type = secret.type.toLowerCase();
   secret.type = type === `password` ? `text` : `password`;
   return false;
 };
 
-document.getElementById(`copy-to-clipboard-button`).onclick = function (e) {
+copyToClipboardButton.onclick = () => {
   cipherText.select();
   const success = document.execCommand(`copy`);
   if (success) {
@@ -49,6 +52,5 @@ document.getElementById(`copy-to-clipboard-button`).onclick = function (e) {
   } else {
     console.error(`Failed to copy to clipboard!`);
   }
-  e.preventDefault();
   return false;
 };
