@@ -43,5 +43,8 @@
     "jshashes": "1.0.6",
     "open-iconic": "^1.1.1",
     "zxcvbn": "4.4.2"
+  },
+  "engines": {
+    "node": "<=8"
   }
 }
