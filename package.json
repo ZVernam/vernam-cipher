@@ -7,6 +7,7 @@
     "test": "eslint ./lib && mocha-webpack ./lib/test/**/*.js",
     "build": "gulp clean && gulp build",
     "start": "gulp watch",
+    "publish:prod": "gulp publish:prod",
     "publish": "gulp publish"
   },
   "repository": {

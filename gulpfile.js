@@ -51,17 +51,13 @@ gulp.task('clean', function () {
 });
 
 gulp.task('scripts', function () {
-  return gulp.src(current.webpack.entry).
-      pipe(webpack(current.webpack, webpack2)).
-      pipe(gulp.dest(current.dest)).
-      pipe(stream());
+  return gulp.src(current.webpack.entry).pipe(webpack(current.webpack, webpack2)).pipe(gulp.dest(current.dest))
+    .pipe(stream());
 });
 
 gulp.task('styles', function () {
-  return gulp.src([current.styles]).
-      pipe(config.production ? concatCSS('style.css') : gutil.noop()).
-      pipe(gulp.dest(current.dest)).
-      pipe(stream());
+  return gulp.src([current.styles]).pipe(config.production ? concatCSS('style.css') : gutil.noop())
+    .pipe(gulp.dest(current.dest)).pipe(stream());
 });
 
 gulp.task('images', function () {
@@ -95,6 +91,18 @@ gulp.task('static:chrome', function () {
 });
 
 gulp.task('build:chrome', ['build:web', 'static:chrome']);
+
+gulp.task('publish:prod', ['build:web'], function (end) {
+  ghpages.publish(path.join(__dirname, current.dest),
+    {
+      branch: 'master',
+      add: true,
+      repo: 'git@github.com:ZVernam/zvernam.github.io.git',
+      logger: function (message) {
+        console.log(message);
+      }
+    }, end);
+});
 
 gulp.task('publish', ['build:web'], function (end) {
   ghpages.publish(path.join(__dirname, current.dest), {
