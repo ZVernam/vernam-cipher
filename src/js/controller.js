@@ -4,6 +4,9 @@ import updateSummary from './summary';
 import {shortHash, updateIcon} from './util';
 
 const HASH_ALGORITHM = `SHA256`;
+const DEFAULTS = {
+  hash: true // Hash by default
+};
 
 const text = document.getElementById(`encrypt-text`);
 const secret = document.getElementById(`encrypt-secret`);
@@ -54,3 +57,8 @@ copyToClipboardButton.onclick = () => {
   }
   return false;
 };
+
+// Use defaults
+if (DEFAULTS.hash) {
+  hashUnhashButton.click();
+}
