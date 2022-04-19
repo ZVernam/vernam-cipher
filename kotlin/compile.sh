@@ -1,0 +1,1 @@
+kotlinc-js @compiler.options src

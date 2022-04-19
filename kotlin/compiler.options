@@ -1,2 +1,7 @@
+-Xmulti-platform
+-Xir-dce
+-Xir-base-class-in-metadata
+
 -main noCall
 -output=output.js
+-module-kind umd
