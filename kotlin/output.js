@@ -1,11 +1,27 @@
-if (typeof kotlin === 'undefined') {
-  throw new Error("Error loading module 'output'. Its dependency 'kotlin' was not found. Please, check whether 'kotlin' is loaded prior to 'output'.");
-}
-var output = function (_, Kotlin) {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd)
+    define(['exports', 'kotlin'], factory);
+  else if (typeof exports === 'object')
+    factory(module.exports, require('kotlin'));
+  else {
+    if (typeof kotlin === 'undefined') {
+      throw new Error("Error loading module 'output'. Its dependency 'kotlin' was not found. Please, check whether 'kotlin' is loaded prior to 'output'.");
+    }
+    root.output = factory(typeof output === 'undefined' ? {} : output, kotlin);
+  }
+}(this, function (_, Kotlin) {
   'use strict';
+  var Kind_INTERFACE = Kotlin.Kind.INTERFACE;
   var Kind_OBJECT = Kotlin.Kind.OBJECT;
   var decodeToString = Kotlin.kotlin.text.decodeToString_964n91$;
   var encodeToByteArray = Kotlin.kotlin.text.encodeToByteArray_pdl1vz$;
+  function Base64Encoder() {
+  }
+  Base64Encoder.$metadata$ = {
+    kind: Kind_INTERFACE,
+    simpleName: 'Base64Encoder',
+    interfaces: []
+  };
   function Base64Factory() {
     Base64Factory_instance = this;
   }
@@ -35,7 +51,7 @@ var output = function (_, Kotlin) {
   JsBase64Encoder.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'JsBase64Encoder',
-    interfaces: []
+    interfaces: [Base64Encoder]
   };
   var JsBase64Encoder_instance = null;
   function JsBase64Encoder_getInstance() {
@@ -47,6 +63,7 @@ var output = function (_, Kotlin) {
   var package$org = _.org || (_.org = {});
   var package$jetbrains = package$org.jetbrains || (package$org.jetbrains = {});
   var package$base64 = package$jetbrains.base64 || (package$jetbrains.base64 = {});
+  package$base64.Base64Encoder = Base64Encoder;
   Object.defineProperty(package$base64, 'Base64Factory', {
     get: Base64Factory_getInstance
   });
@@ -55,4 +72,4 @@ var output = function (_, Kotlin) {
   });
   Kotlin.defineModule('output', _);
   return _;
-}(typeof output === 'undefined' ? {} : output, kotlin);
+}));
