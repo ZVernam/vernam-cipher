@@ -14,6 +14,7 @@
   var Kind_INTERFACE = Kotlin.Kind.INTERFACE;
   var Kind_OBJECT = Kotlin.Kind.OBJECT;
   var decodeToString = Kotlin.kotlin.text.decodeToString_964n91$;
+  var throwCCE = Kotlin.throwCCE;
   var encodeToByteArray = Kotlin.kotlin.text.encodeToByteArray_pdl1vz$;
   function Base64Encoder() {
   }
@@ -22,6 +23,7 @@
     simpleName: 'Base64Encoder',
     interfaces: []
   };
+  var global_0;
   function Base64Factory() {
     Base64Factory_instance = this;
   }
@@ -43,9 +45,10 @@
   function JsBase64Encoder() {
     JsBase64Encoder_instance = this;
   }
-  JsBase64Encoder.prototype.encode_fqrh44$ = function (src) {
+  JsBase64Encoder.prototype.encode = function (src) {
+    var tmp$;
     var string = decodeToString(src);
-    var encodedString = window.btoa(string);
+    var encodedString = typeof (tmp$ = global_0.btoa(string)) === 'string' ? tmp$ : throwCCE();
     return encodeToByteArray(encodedString);
   };
   JsBase64Encoder.$metadata$ = {
@@ -64,12 +67,18 @@
   var package$jetbrains = package$org.jetbrains || (package$org.jetbrains = {});
   var package$base64 = package$jetbrains.base64 || (package$jetbrains.base64 = {});
   package$base64.Base64Encoder = Base64Encoder;
+  Object.defineProperty(package$base64, 'global', {
+    get: function () {
+      return global_0;
+    }
+  });
   Object.defineProperty(package$base64, 'Base64Factory', {
     get: Base64Factory_getInstance
   });
   Object.defineProperty(package$base64, 'JsBase64Encoder', {
     get: JsBase64Encoder_getInstance
   });
+  global_0 = typeof window === 'undefined' ? global : window;
   Kotlin.defineModule('output', _);
   return _;
 }));
