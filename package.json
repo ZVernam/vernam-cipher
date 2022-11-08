@@ -30,7 +30,7 @@
     "eslint": "4.18.2",
     "eslint-config-htmlacademy": "0.2.2",
     "gh-pages": "0.12.0",
-    "gulp": "3.9.1",
+    "gulp": "4.0.2",
     "gulp-concat-css": "2.3.0",
     "gulp-template": "4.0.0",
     "gulp-util": "3.0.8",
