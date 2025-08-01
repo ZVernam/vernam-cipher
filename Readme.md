@@ -19,3 +19,7 @@ Todo:
 - [x] Tests
 - [x] Node.js library compatible
 - [ ] NPM distribution
+
+Build instructions:
+`npm run build` -- builds web page
+`npm run build -- --chrome` -- builds chrome extension
