@@ -15,9 +15,6 @@ const mapping = {
   }
 };
 
-const storage = chrome.storage.sync;
-const runtime = chrome.runtime;
-
 const defaultValues = {};
 for (const [name, value] of Object.entries(mapping)) {
   value.element = document.getElementById(value.id);
@@ -37,23 +34,10 @@ const fillElements = (data) => {
   }
 };
 
-const promisify = (fn) => {
-  return (...args) => new Promise((onSuccess, onFail) => {
-    fn(...args, (data) => {
-      if (runtime.lastError) {
-        onFail(runtime.lastError);
-      } else {
-        onSuccess(...(data ? [data] : args));
-      }
-    });
-  });
-};
-
 const handlePromise = (promise, successMessage, failMessage) => promise.
   then(() => statusElement.textContent = successMessage).
   catch(({message = failMessage}) => statusElement.textContent = message).
   then(() => setTimeout(() => statusElement.textContent = '', CLEANUP_DELAY));
-
 
 const myStorage = {
   save() {
@@ -68,10 +52,10 @@ const myStorage = {
       }
     }
 
-    return promisify(storage.set)(data);
+    return chrome.runtime.sync.set(data);
   },
   load() {
-    return promisify(storage.get)(defaultValues).then(fillElements);
+    return chrome.runtime.sync.get(defaultValues).then(fillElements);
   },
   reset() {
     fillElements(defaultValues);
