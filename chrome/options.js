@@ -34,11 +34,6 @@ const fillElements = (data) => {
   }
 };
 
-const handlePromise = (promise, successMessage, failMessage) => promise.
-  then(() => statusElement.textContent = successMessage).
-  catch(({message = failMessage}) => statusElement.textContent = message).
-  then(() => setTimeout(() => statusElement.textContent = '', CLEANUP_DELAY));
-
 const myStorage = {
   save() {
     const data = {};
@@ -52,10 +47,10 @@ const myStorage = {
       }
     }
 
-    return chrome.runtime.sync.set(data);
+    return chrome.storage.sync.set(data);
   },
   load() {
-    return chrome.runtime.sync.get(defaultValues).then(fillElements);
+    return chrome.storage.sync.get().then((items) => fillElements(items ? items : defaultValues));
   },
   reset() {
     fillElements(defaultValues);
@@ -64,6 +59,10 @@ const myStorage = {
 };
 
 const statusElement = document.getElementById('status');
+const handlePromise = (promise, successMessage, failMessage) => promise.
+  then(() => statusElement.textContent = successMessage).
+  catch(({message = failMessage}) => statusElement.textContent = message).
+  then(() => setTimeout(() => statusElement.textContent = '', CLEANUP_DELAY));
 
 // Saves options to chrome.storage
 const save = () => handlePromise(myStorage.save(), 'Options saved.', 'Failed to save options.');
