@@ -2,5 +2,5 @@
 
 npm run build -- --chrome
 
-rm -rf zvernam.zip
-zip -jv zvernam.zip build/plugin/chrome/*
+rm -rf build/plugin/chrome.zip
+zip -jv build/plugin/chrome.zip build/plugin/chrome/*
