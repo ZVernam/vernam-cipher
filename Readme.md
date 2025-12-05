@@ -23,3 +23,16 @@ Todo:
 Build instructions:
 `npm run build` -- builds web page
 `npm run build -- --chrome` -- builds chrome extension
+
+Docker:
+- собрать latest версию:
+```shell
+docker build -t vernam-cipher:latest .
+```
+
+- запустить latest версию локально:
+```shell
+docker run --rm -it -p 8080:80 vernam-cipher:latest
+```
+
+- запустить 
