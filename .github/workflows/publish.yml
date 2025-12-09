@@ -1,0 +1,51 @@
+name: Publish Docker image
+
+on:
+  push:
+    tags:
+      - '*'        # Запуск при создании любого git tag (v1.0.0, 1.1, beta и т.д.)
+    branches:
+      - main       # Можно оставить для latest
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # нужно чтобы получить git tags
+
+      - name: Extract tag (if exists)
+        id: get_tag
+        run: |
+          TAG=$(git describe --tags --exact-match 2>/dev/null || true)
+          if [ -z "$TAG" ]; then
+            echo "tag=latest" >> $GITHUB_OUTPUT
+          else
+            echo "tag=$TAG" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build image
+        run: |
+          IMAGE=ghcr.io/${{ github.repository_owner }}/myapp:${{ steps.get_tag.outputs.tag }}
+          docker build -t $IMAGE .
+
+          # Дополнительно: latest
+          if [ "${{ steps.get_tag.outputs.tag }}" != "latest" ]; then
+            docker tag $IMAGE ghcr.io/${{ github.repository_owner }}/myapp:latest
+          fi
+
+      - name: Push image
+        run: |
+          IMAGE=ghcr.io/${{ github.repository_owner }}/myapp:${{ steps.get_tag.outputs.tag }}
+          docker push $IMAGE
+
+          # Дополнительно: push latest
+          if [ "${{ steps.get_tag.outputs.tag }}" != "latest" ]; then
+            docker push ghcr.io/${{ github.repository_owner }}/myapp:latest
+          fi
