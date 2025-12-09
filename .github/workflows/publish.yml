@@ -2,10 +2,14 @@ name: Publish Docker image
 
 on:
   push:
-    tags:
-      - '*'        # Запуск при создании любого git tag (v1.0.0, 1.1, beta и т.д.)
     branches:
-      - main       # Можно оставить для latest
+      - main
+    tags:
+      - '*'  # triggers on any git tag push
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   publish:
@@ -15,10 +19,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # нужно чтобы получить git tags
+          fetch-depth: 0  # required to read git tags
 
-      - name: Extract tag (if exists)
-        id: get_tag
+      - name: Detect tag
+        id: tag
         run: |
           TAG=$(git describe --tags --exact-match 2>/dev/null || true)
           if [ -z "$TAG" ]; then
@@ -28,24 +32,30 @@ jobs:
           fi
 
       - name: Login to GHCR
-        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Build image
+      - name: Build Docker image
         run: |
-          IMAGE=ghcr.io/${{ github.repository_owner }}/myapp:${{ steps.get_tag.outputs.tag }}
-          docker build -t $IMAGE .
+          IMAGE_BASE=ghcr.io/${{ github.repository_owner }}/myapp
+          TAG=${{ steps.tag.outputs.tag }}
 
-          # Дополнительно: latest
-          if [ "${{ steps.get_tag.outputs.tag }}" != "latest" ]; then
-            docker tag $IMAGE ghcr.io/${{ github.repository_owner }}/myapp:latest
+          echo "Building image: $IMAGE_BASE:$TAG"
+          docker build -t $IMAGE_BASE:$TAG .
+
+          # If tag is not "latest", also tag "latest"
+          if [ "$TAG" != "latest" ]; then
+            docker tag $IMAGE_BASE:$TAG $IMAGE_BASE:latest
           fi
 
-      - name: Push image
+      - name: Push Docker image
         run: |
-          IMAGE=ghcr.io/${{ github.repository_owner }}/myapp:${{ steps.get_tag.outputs.tag }}
-          docker push $IMAGE
+          IMAGE_BASE=ghcr.io/${{ github.repository_owner }}/myapp
+          TAG=${{ steps.tag.outputs.tag }}
 
-          # Дополнительно: push latest
-          if [ "${{ steps.get_tag.outputs.tag }}" != "latest" ]; then
-            docker push ghcr.io/${{ github.repository_owner }}/myapp:latest
+          # Push tag
+          docker push $IMAGE_BASE:$TAG
+
+          # Also push latest if needed
+          if [ "$TAG" != "latest" ]; then
+            docker push $IMAGE_BASE:latest
           fi
