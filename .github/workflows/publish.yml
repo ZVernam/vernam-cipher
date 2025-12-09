@@ -2,10 +2,8 @@ name: Publish Docker image
 
 on:
   push:
-    branches:
-      - main
-    tags:
-      - '*'  # triggers on any git tag push
+    branches: [ "main" ]
+    tags: [ "*" ]
 
 permissions:
   contents: read
@@ -19,7 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # required to read git tags
+          fetch-depth: 0
+
+      - name: Normalize owner to lowercase
+        id: owner
+        run: echo "name=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
       - name: Detect tag
         id: tag
@@ -36,26 +38,25 @@ jobs:
 
       - name: Build Docker image
         run: |
-          IMAGE_BASE=ghcr.io/${{ github.repository_owner }}/myapp
+          OWNER=${{ steps.owner.outputs.name }}
+          IMAGE_BASE=ghcr.io/$OWNER/myapp
           TAG=${{ steps.tag.outputs.tag }}
 
           echo "Building image: $IMAGE_BASE:$TAG"
           docker build -t $IMAGE_BASE:$TAG .
 
-          # If tag is not "latest", also tag "latest"
           if [ "$TAG" != "latest" ]; then
             docker tag $IMAGE_BASE:$TAG $IMAGE_BASE:latest
           fi
 
       - name: Push Docker image
         run: |
-          IMAGE_BASE=ghcr.io/${{ github.repository_owner }}/myapp
+          OWNER=${{ steps.owner.outputs.name }}
+          IMAGE_BASE=ghcr.io/$OWNER/myapp
           TAG=${{ steps.tag.outputs.tag }}
 
-          # Push tag
           docker push $IMAGE_BASE:$TAG
 
-          # Also push latest if needed
           if [ "$TAG" != "latest" ]; then
             docker push $IMAGE_BASE:latest
           fi
