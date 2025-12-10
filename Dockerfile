@@ -23,7 +23,7 @@ FROM nginx:alpine
 
 LABEL maintainer="Evgenii Shchepotev" \
       description="Vernam cipher JS implementation" \
-      version="0.5.4"
+      version="0.5.5"
 
 # Copy built artifacts from builder stage to nginx html directory
 COPY --from=builder /app/build/web /usr/share/nginx/html
