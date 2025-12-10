@@ -16,28 +16,30 @@ text.addEventListener(`input`, () => {
   }
 });
 
-const tg = window.Telegram && window.Telegram.WebApp;
 
-if (tg) {
-  tg.ready();
-
-  tg.expand(); // развернуть на весь экран
-
-  // изменить цвет кнопки подтверждения
-  tg.MainButton.setText(`Продолжить`);
-  tg.MainButton.show();
-
-  tg.MainButton.onClick(() => {
-    tg.sendData(JSON.stringify({ok: true}));
-  });
-} else {
-  document.body.innerHTML += `<div>Opened outside Telegram</div>`;
-  console.log(`Opened outside Telegram — debug mode`);
-  window.debugMode = true;
-  const hash = window.location.hash.replace(`#`, ``);
-  if (hash) {
-    text.value = hash;
-    secret.focus();
-  }
-}
-
+//
+// const tg = window.Telegram && window.Telegram.WebApp;
+//
+// if (tg) {
+//   tg.ready();
+//
+//   tg.expand(); // развернуть на весь экран
+//
+//   // изменить цвет кнопки подтверждения
+//   tg.MainButton.setText(`Продолжить`);
+//   tg.MainButton.show();
+//
+//   tg.MainButton.onClick(() => {
+//     tg.sendData(JSON.stringify({ok: true}));
+//   });
+// } else {
+//   document.body.innerHTML += `<div>Opened outside Telegram</div>`;
+//   console.log(`Opened outside Telegram — debug mode`);
+//   window.debugMode = true;
+//   const hash = window.location.hash.replace(`#`, ``);
+//   if (hash) {
+//     text.value = hash;
+//     secret.focus();
+//   }
+// }
+//
