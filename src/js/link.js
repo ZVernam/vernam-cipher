@@ -36,10 +36,6 @@ text.addEventListener(`input`, () => {
 //   document.body.innerHTML += `<div>Opened outside Telegram</div>`;
 //   console.log(`Opened outside Telegram — debug mode`);
 //   window.debugMode = true;
-//   const hash = window.location.hash.replace(`#`, ``);
-//   if (hash) {
-//     text.value = hash;
-//     secret.focus();
-//   }
+
 // }
 //
