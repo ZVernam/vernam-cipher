@@ -1,7 +1,9 @@
 import './controller';
-import './link';
+import {updateText} from "./link";
 
-import onReady from "./telegram";
+import {isTg} from "./telegram";
+
+const onReady = () => isTg() ? true : updateText();
 
 if (document.readyState === `complete` || document.readyState === `interactive`) {
   onReady();

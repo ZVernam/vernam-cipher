@@ -14,24 +14,19 @@ function isTelegram() {
 }
 
 function debugMessage(text) {
-  let div = document.createElement(`div`);
+  const div = document.createElement(`div`);
   div.innerHTML = text;
   document.body.appendChild(div);
 }
 
-function onReady() {
+export const isTg = () => {
   // eslint-disable-next-line no-debugger
   debugger;
-  if (isTelegram()) {
-    debugMessage(`Opened INSIDE Telegram`);
-    if (typeof window.Telegram.WebApp.ready === `function`) {
-      window.Telegram.WebApp.ready();
-    }
-    return true;
-  } else {
+  if (!isTelegram()) {
     debugMessage(`Opened OUTSIDE Telegram`);
     return false;
   }
-}
-
-export default onReady;
+  debugMessage(`Opened INSIDE Telegram`);
+  window.Telegram.WebApp.ready();
+  return true;
+};
