@@ -1,5 +1,16 @@
 function isTelegram() {
-  return (typeof window !== `undefined` && typeof window.Telegram !== `undefined` && typeof window.Telegram.WebApp !== `undefined`);
+  // проверяем наличие сигнатур, которых НЕТ вне Telegram
+  if (typeof window.Telegram === `undefined`) {
+    return false;
+  }
+  if (typeof window.Telegram.WebApp === `undefined`) {
+    return false;
+  }
+
+  const wa = window.Telegram.WebApp;
+
+  // настоящий WebApp всегда содержит initDataUnsafe.hash
+  return !!(wa.initDataUnsafe && wa.initDataUnsafe.hash);
 }
 
 function append(text) {
