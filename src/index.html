@@ -4,14 +4,18 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
 
     <title>Vernam Cipher</title>
 
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
-<body class="main">
+<body class="main" style="visibility: hidden;">
 <header class="header">
     <h1 class="header__title">Vernam Cipher</h1>
 </header>
@@ -92,5 +96,20 @@
     </div>
 </main>
 <script type="application/javascript" src="<%= output.filename %>"></script>
+<h1>Hello, Telegram!</h1>
+
+<script>
+  const tg = window.Telegram.WebApp;
+
+  tg.expand(); // развернуть на весь экран
+
+  // изменить цвет кнопки подтверждения
+  tg.MainButton.setText("Продолжить");
+  tg.MainButton.show();
+
+  tg.MainButton.onClick(() => {
+    tg.sendData(JSON.stringify({ ok: true }));
+  });
+</script>
 </body>
 </html>
