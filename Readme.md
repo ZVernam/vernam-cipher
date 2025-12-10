@@ -25,14 +25,13 @@ Build instructions:
 `npm run build -- --chrome` -- builds chrome extension
 
 Docker:
-- собрать latest версию:
+- make latest version:
 ```shell
 docker build -t vernam-cipher:latest .
 ```
 
-- запустить latest версию локально:
+- run latest version locally:
 ```shell
 docker run --rm -it -p 8080:80 vernam-cipher:latest
 ```
 
-- запустить 
