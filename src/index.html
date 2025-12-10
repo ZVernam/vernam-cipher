@@ -15,7 +15,7 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
-<body class="main" style="visibility: hidden;">
+<body class="main">
 <header class="header">
     <h1 class="header__title">Vernam Cipher</h1>
 </header>
@@ -96,20 +96,5 @@
     </div>
 </main>
 <script type="application/javascript" src="<%= output.filename %>"></script>
-<h1>Hello, Telegram!</h1>
-
-<script>
-  const tg = window.Telegram.WebApp;
-
-  tg.expand(); // развернуть на весь экран
-
-  // изменить цвет кнопки подтверждения
-  tg.MainButton.setText("Продолжить");
-  tg.MainButton.show();
-
-  tg.MainButton.onClick(() => {
-    tg.sendData(JSON.stringify({ ok: true }));
-  });
-</script>
 </body>
 </html>

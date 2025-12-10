@@ -16,9 +16,19 @@ text.addEventListener(`input`, () => {
   }
 });
 
-const hash = window.location.hash.replace(`#`, ``);
-if (hash) {
-  text.value = hash;
-  secret.focus();
+if (!(window.Telegram && window.Telegram.WebApp)) {
+  // Режим браузера
+  document.body.innerHTML += `<div>Opened outside Telegram</div>`;
+
+  const hash = window.location.hash.replace(`#`, ``);
+  if (hash) {
+    text.value = hash;
+    secret.focus();
+  }
+} else {
+  // Режим Telegram WebApp
+  const tg = window.Telegram.WebApp;
+  tg.MainButton.show();
 }
+
 
