@@ -1,5 +1,5 @@
 # Build stage
-FROM node:8-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
@@ -23,10 +23,10 @@ FROM nginx:alpine
 
 LABEL maintainer="Evgenii Shchepotev" \
       description="Vernam cipher JS implementation" \
-      version="0.5.5"
+      version="0.6.0"
 
 # Copy built artifacts from builder stage to nginx html directory
-COPY --from=builder /app/build/web /usr/share/nginx/html
+COPY --from=builder /app/web/dist /usr/share/nginx/html
 
 # Expose nginx port
 EXPOSE 80
