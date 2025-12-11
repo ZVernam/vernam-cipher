@@ -1,6 +1,14 @@
 // vitest.config.js
-import { defineConfig } from "vitest/config";
-import { resolve } from "path";
+import {defineConfig} from "vitest/config";
+import {dirname, resolve} from "node:path";
+
+import {fileURLToPath} from 'node:url';
+
+// __filename equivalent
+const __filename = fileURLToPath(import.meta.url);
+
+// __dirname equivalent
+const __dirname = dirname(__filename);
 
 export default defineConfig({
   test: {

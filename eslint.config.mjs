@@ -6,7 +6,7 @@ import js from "@eslint/js";
 export default defineConfig([
   {ignores: ['build', '**/dist']},
   {
-    files: ["src/**/*.js", "lib/**/*.js", "chrome/**/*.js"],
+    files: ["common/**/*.js", "chrome/**/*.js"],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
