@@ -4,7 +4,7 @@ import {defineConfig} from "eslint/config";
 import js from "@eslint/js";
 
 export default defineConfig([
-  {ignores: ['build/**/*']},
+  {ignores: ['build', '**/dist']},
   {
     files: ["src/**/*.js", "lib/**/*.js", "chrome/**/*.js"],
     languageOptions: {

@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint",
-    "test": "npm run lint && mocha-webpack ./lib/test/**/*.js",
+    "test": "npm run lint && mocha-webpack ./common/**/test/**/*.js",
     "build:chrome": "vite build chrome",
     "build:telegram": "vite build telegram",
     "build:web": "vite build web",
     "build": "npm run build:chrome && npm run build:telegram && npm run build:web",
-    "start": "gulp watch",
+    "start": "vite web",
     "publish:prod": "gulp publish:prod",
     "publish": "gulp publish"
   },
