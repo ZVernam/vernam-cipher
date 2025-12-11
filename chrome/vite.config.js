@@ -1,5 +1,5 @@
 import {defineConfig} from "vite";
-import {dirname} from "path";
+import {dirname} from "node:path";
 import {viteStaticCopy} from "vite-plugin-static-copy";
 
 import {fileURLToPath} from 'url';
