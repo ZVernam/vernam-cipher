@@ -11,8 +11,8 @@
     "build:web": "vite build web",
     "build": "npm run build:chrome && npm run build:telegram && npm run build:web",
     "start": "vite web",
-    "publish:prod": "gulp publish:prod",
-    "publish": "gulp publish"
+    "publish:prod": "npm run build:web && node publish.mjs",
+    "publish": "npm run publish:prod"
   },
   "repository": {
     "type": "git",
