@@ -4,6 +4,7 @@
   "description": "Vernam cipher JS implementation",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint",
     "test": "eslint ./lib && mocha-webpack ./lib/test/**/*.js",
     "build": "gulp clean && gulp build",
     "start": "gulp watch",
@@ -25,10 +26,10 @@
   },
   "homepage": "https://github.com/zeckson/vernam-cipher#readme",
   "devDependencies": {
+    "eslint": "9.39.1",
+    "@eslint/js": "9.39.1",
     "browser-sync": "2.18.8",
     "del": "2.2.2",
-    "eslint": "4.18.2",
-    "eslint-config-htmlacademy": "0.2.3",
     "gh-pages": "0.12.0",
     "gulp": "3.9.1",
     "gulp-concat-css": "2.3.0",
@@ -36,6 +37,7 @@
     "gulp-util": "3.0.8",
     "mocha": "3.2.0",
     "mocha-webpack": "1.0.0-beta.1",
+    "vite": "7.2.7",
     "webpack": "2.2.1",
     "webpack-stream": "3.2.0"
   },
@@ -45,6 +47,6 @@
     "zxcvbn": "4.4.2"
   },
   "engines": {
-    "node": "<=8"
+    "node": "<=22"
   }
 }
