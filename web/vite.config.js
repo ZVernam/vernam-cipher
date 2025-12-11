@@ -22,7 +22,6 @@ export default defineConfig({
       rollupOptions: {
         input: {
           index: `${__dirname}/index.html`,
-          options: `${__dirname}/options.html`,
         },
         output: {
           entryFileNames: 'assets/[name]-[hash].js',
@@ -35,9 +34,7 @@ export default defineConfig({
       // Copy static files (manifest.json, icons) to dist
       viteStaticCopy({
         targets: [
-          {src: `${__dirname}/manifest.json`, dest: '.'},
-          {src: `${__dirname}/../src/icons/open-iconic.svg`, dest: '.'},
-          {src: `${__dirname}/**.png`, dest: '.'},
+          {src: `${__dirname}/../common/src/icons/*.*`, dest: '.'},
         ],
       }),
     ],
