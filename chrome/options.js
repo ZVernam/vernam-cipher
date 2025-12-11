@@ -62,7 +62,7 @@ const statusElement = document.getElementById('status');
 const handlePromise = (promise, successMessage, failMessage) => promise.
   then(() => statusElement.textContent = successMessage).
   catch(({message = failMessage}) => statusElement.textContent = message).
-  then(() => setTimeout(() => statusElement.textContent = '', CLEANUP_DELAY));
+  then(() => window.setTimeout(() => statusElement.textContent = '', CLEANUP_DELAY));
 
 // Saves options to chrome.storage
 const save = () => handlePromise(myStorage.save(), 'Options saved.', 'Failed to save options.');
