@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint",
-    "test": "npm run lint && mocha-webpack ./common/**/test/**/*.js",
+    "test": "npm run lint && vitest run -r ./common",
     "build:chrome": "vite build chrome",
     "build:telegram": "vite build telegram",
     "build:web": "vite build web",
@@ -30,21 +30,12 @@
   "homepage": "https://github.com/zeckson/vernam-cipher#readme",
   "devDependencies": {
     "@eslint/js": "9.39.1",
-    "browser-sync": "2.18.8",
-    "del": "2.2.2",
     "eslint": "9.39.1",
-    "gh-pages": "0.12.0",
-    "gulp": "3.9.1",
-    "gulp-concat-css": "2.3.0",
-    "gulp-template": "4.0.0",
-    "gulp-util": "3.0.8",
-    "mocha": "3.2.0",
-    "mocha-webpack": "1.0.0-beta.1",
+    "gh-pages": "6.3.0",
     "vite": "7.2.7",
     "vite-plugin-html": "3.2.2",
     "vite-plugin-static-copy": "3.1.4",
-    "webpack": "2.2.1",
-    "webpack-stream": "3.2.0"
+    "vitest": "4.0.15"
   },
   "dependencies": {
     "jshashes": "1.0.6",
