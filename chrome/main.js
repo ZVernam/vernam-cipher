@@ -1,3 +1,5 @@
+import '../src/css/style.css';
+
 import '../src/js/controller';
 import stripper from '../lib/src/url/parser';
 import buildPattern from '../lib/src/pattern/pattern';
