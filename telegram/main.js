@@ -1,9 +1,9 @@
-import '../css/style.css';
+import '../common/src/css/style.css';
 
-import './controller';
-import {updateText} from "./link";
+import '../common/src/js/controller';
+import {updateText} from "../common/src/js/link";
 
-import {isTg} from "./telegram";
+import {isTg} from "../common/src/js/telegram";
 
 const onReady = () => isTg() ? true : updateText();
 
