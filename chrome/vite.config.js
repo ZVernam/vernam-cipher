@@ -36,7 +36,7 @@ export default defineConfig({
       viteStaticCopy({
         targets: [
           {src: `${__dirname}/manifest.json`, dest: '.'},
-          {src: `${__dirname}/../src/icons/open-iconic.svg`, dest: '.'},
+          {src: `${__dirname}/../common/src/icons/open-iconic.svg`, dest: '.'},
           {src: `${__dirname}/**.png`, dest: '.'},
         ],
       }),

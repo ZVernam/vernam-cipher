@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-npm run build -- --chrome
+npm run build:chrome
 
-rm -rf build/plugin/chrome.zip
-zip -jv build/plugin/chrome.zip build/plugin/chrome/*
+rm -rf build/chrome.zip
+mkdir build
+zip -jv build/chrome.zip chrome/dist/*

@@ -6,7 +6,10 @@
   "scripts": {
     "lint": "eslint",
     "test": "npm run lint && mocha-webpack ./lib/test/**/*.js",
-    "build": "gulp clean && gulp build",
+    "build:chrome": "vite build chrome",
+    "build:telegram": "vite build telegram",
+    "build:web": "vite build web",
+    "build": "npm run build:chrome && npm run build:telegram && npm run build:web",
     "start": "gulp watch",
     "publish:prod": "gulp publish:prod",
     "publish": "gulp publish"

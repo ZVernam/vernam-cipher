@@ -1,8 +1,8 @@
-import '../src/css/style.css';
+import '../common/src/css/style.css';
 
-import '../src/js/controller';
-import stripper from '../lib/src/url/parser';
-import buildPattern from '../lib/src/pattern/pattern';
+import '../common/src/js/controller';
+import stripper from '../common/lib/src/url/parser';
+import buildPattern from '../common/lib/src/pattern/pattern';
 
 function getCurrentTab(callback) {
   const queryOptions = {active: true, lastFocusedWindow: true};
