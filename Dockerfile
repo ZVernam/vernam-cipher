@@ -16,7 +16,7 @@ COPY . .
 RUN npm test
 
 # Build the application
-RUN npm run build
+RUN npm run build:telegram
 
 # Production stage
 FROM nginx:alpine
@@ -26,7 +26,7 @@ LABEL maintainer="Evgenii Shchepotev" \
       version="0.6.0"
 
 # Copy built artifacts from builder stage to nginx html directory
-COPY --from=builder /app/web/dist /usr/share/nginx/html
+COPY --from=builder /app/telegram/dist /usr/share/nginx/html
 
 # Expose nginx port
 EXPOSE 80
