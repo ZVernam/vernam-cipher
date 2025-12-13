@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-echo "VAR=${SERVER_API}"
+echo "SERVER_API=${SERVER_API}"
 
 ESCAPED_VALUE=$(printf '%s' "$SERVER_API" | sed 's/[\/&|]/\\&/g')
 
