@@ -3,7 +3,7 @@ import '../common/src/css/style.css';
 import '../common/src/js/controller';
 import {updateText} from "../common/src/js/link";
 
-import {isTg} from "../common/src/js/telegram";
+import {isTg} from "./telegram";
 
 const onReady = () => isTg() ? true : updateText();
 

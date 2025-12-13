@@ -19,8 +19,12 @@ function debug(text) {
   document.body.appendChild(div);
 }
 
+const setupTelegram = () => {
+  debug(`Search params: ${JSON.stringify(window.location.search)}`);
+};
+
+
 export const isTg = () => {
-  // eslint-disable-next-line no-debugger
   debugger;
   let webApp = getWebApp();
   if (!webApp) {
@@ -29,5 +33,6 @@ export const isTg = () => {
   }
   debug(`Opened INSIDE Telegram`);
   webApp.ready();
+  setupTelegram()
   return true;
 };
