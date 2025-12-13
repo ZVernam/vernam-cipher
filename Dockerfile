@@ -23,10 +23,14 @@ FROM nginx:alpine
 
 LABEL maintainer="Evgenii Shchepotev" \
       description="Vernam cipher JS implementation" \
-      version="0.6.1"
+      version="0.6.2"
 
 # Copy built artifacts from builder stage to nginx html directory
 COPY --from=builder /app/telegram/dist /usr/share/nginx/html
+
+ENV SERVER_API="<not set>"
+CMD echo "SERVER_API=${SERVER_API}"
+
 RUN sed -i "s|__SERVER_API__|$SERVER_API|g" /usr/share/nginx/html/index.html
 
 # Expose nginx port
