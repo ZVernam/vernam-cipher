@@ -1,4 +1,4 @@
-ARG VERSION="0.6.6"
+ARG VERSION=$VERSION
 
 # Build stage
 FROM node:22-alpine AS builder
