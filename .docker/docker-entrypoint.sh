@@ -1,13 +1,10 @@
 #!/bin/sh
-set -eu
+set -e
 
-: "${SERVER_API:?SERVER_API is not set}"
+VALUE="${SERVER_API-__SERVER_API__}"
 
-echo "Injecting SERVER_API=${SERVER_API}"
+ESCAPED_VALUE=$(printf '%s' "$VALUE" | sed 's/[\/&|]/\\&/g')
 
-# Escape sed special chars safely
-ESCAPED_API=$(printf '%s' "$SERVER_API" | sed 's/[\/&|]/\\&/g')
-
-sed -i "s|__SERVER_API__|$ESCAPED_API|g" /usr/share/nginx/html/index.html
+sed -i "s|__SERVER_API__|$ESCAPED_VALUE|g" /usr/share/nginx/html/index.html
 
 exec "$@"
