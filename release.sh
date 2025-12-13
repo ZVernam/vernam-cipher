@@ -39,16 +39,9 @@ echo "Bumping version to $VERSION"
 npm version "$VERSION" --no-git-tag-version
 
 # 2) Dockerfile ARG VERSION="..."
-# Replace first matching ARG VERSION="...".
+# Replace first matching ARG VERSION="..." with ARG VERSION=<version>.
 # (Works on GNU sed and BSD sed via backup file, then remove it.)
-if sed --version >/dev/null 2>&1; then
-  # GNU sed
-  sed -i '0,/^ARG VERSION="/s/^ARG VERSION="[^"]*"/ARG VERSION="'"$VERSION"'"/' Dockerfile
-else
-  # BSD/macOS sed
-  sed -i.bak '0,/^ARG VERSION="/s/^ARG VERSION="[^"]*"/ARG VERSION="'"$VERSION"'"/' Dockerfile
-  rm -f Dockerfile.bak
-fi
+sed -i.bak '0,/^ARG VERSION=/s/^ARG VERSION=[^ ]*/ARG VERSION='"$VERSION"'/' Dockerfile
 
 # 3) commit + tag + push
 git add package.json package-lock.json Dockerfile
