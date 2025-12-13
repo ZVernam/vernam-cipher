@@ -27,6 +27,7 @@ LABEL maintainer="Evgenii Shchepotev" \
 
 # Copy built artifacts from builder stage to nginx html directory
 COPY --from=builder /app/telegram/dist /usr/share/nginx/html
+RUN sed -i "s|__SERVER_API__|$SERVER_API|g" /usr/share/nginx/html/index.html
 
 # Expose nginx port
 EXPOSE 80
