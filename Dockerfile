@@ -23,17 +23,17 @@ FROM nginx:alpine
 
 LABEL maintainer="Evgenii Shchepotev" \
       description="Vernam cipher JS implementation" \
-      version="0.6.2"
+      version="0.6.3"
 
 # Copy built artifacts from builder stage to nginx html directory
 COPY --from=builder /app/telegram/dist /usr/share/nginx/html
 
-ENV SERVER_API="<not set>"
-CMD echo "SERVER_API=${SERVER_API}"
+# Copy entrypoint script
+COPY .docker/docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
-RUN sed -i "s|__SERVER_API__|$SERVER_API|g" /usr/share/nginx/html/index.html
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
-# Expose nginx port
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
