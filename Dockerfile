@@ -1,4 +1,4 @@
-ARG VERSION="0.6.4"
+ARG VERSION="0.6.6"
 
 # Build stage
 FROM node:22-alpine AS builder
@@ -20,6 +20,8 @@ RUN npm test
 # Build the application
 RUN npm run build:telegram
 
+RUN sed -i "s|__VERSION__|$VERSION|g" /app/telegram/dist/index.html
+
 # Production stage
 FROM nginx:alpine
 
@@ -31,14 +33,10 @@ LABEL maintainer="Evgenii Shchepotev" \
 
 # Copy built artifacts from builder stage to nginx html directory
 COPY --from=builder /app/telegram/dist /usr/share/nginx/html
-RUN sed -i "s|__VERSION__|$VERSION|g" /usr/share/nginx/html/index.html
 
 # Copy entrypoint script
 COPY .docker/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
-
-# Switch to non-root user for security
-USER nginx
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
