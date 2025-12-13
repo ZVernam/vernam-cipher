@@ -58,7 +58,7 @@ fi
 if [ $DRY_RUN -eq 1 ]; then
   echo "[DRY RUN] Would update Dockerfile version to $VERSION"
 else
-  sed -i.bak 's/^ARG VERSION=.*/ARG VERSION=$VERSION/' Dockerfile
+  sed -i.bak "s/^ARG VERSION=.*/ARG VERSION=\"$VERSION\"/" Dockerfile
 fi
 
 # 3) commit + tag + push
