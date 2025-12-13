@@ -1,6 +1,16 @@
 #!/usr/bin/env sh
 set -eu
 
+DRY_RUN=0
+VERSION=""
+
+while getopts "n" opt; do
+  case $opt in
+    n) DRY_RUN=1 ;;
+  esac
+done
+
+shift $((OPTIND-1))
 VERSION="${1:-}"
 
 if [ -z "$VERSION" ]; then
@@ -36,22 +46,33 @@ fi
 echo "Bumping version to $VERSION"
 
 # 1) package.json version (no git tag/commit from npm; we manage git ourselves)
-npm version "$VERSION" --no-git-tag-version
+if [ $DRY_RUN -eq 1 ]; then
+  echo "[DRY RUN] Would update package.json version to $VERSION"
+else
+  npm version "$VERSION" --no-git-tag-version
+fi
 
 # 2) Dockerfile ARG VERSION="..."
 # Replace first matching ARG VERSION="..." with ARG VERSION=<version>.
 # (Works on GNU sed and BSD sed via backup file, then remove it.)
-sed -i.bak '0,/^ARG VERSION=/s/^ARG VERSION=[^ ]*/ARG VERSION='"$VERSION"'/' Dockerfile
+if [ $DRY_RUN -eq 1 ]; then
+  echo "[DRY RUN] Would update Dockerfile version to $VERSION"
+else
+  sed -i.bak 's/^ARG VERSION=.*/ARG VERSION=$VERSION/' Dockerfile
+fi
 
 # 3) commit + tag + push
-git add package.json package-lock.json Dockerfile
+if [ $DRY_RUN -eq 1 ]; then
+  echo "[DRY RUN] Would commit changes and create tag $TAG"
+  echo "[DRY RUN] Would push to origin"
+else
+  git add package.json package-lock.json Dockerfile
+  git commit -m "chore(release): $VERSION"
+  git tag -a "$TAG" -m "Release $VERSION"
 
-git commit -m "chore(release): $VERSION"
-git tag -a "$TAG" -m "Release $VERSION"
-
-# Push current branch and tags to origin
-CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-git push origin "$CURRENT_BRANCH"
-git push origin "$TAG"
-
-echo "Done: pushed $CURRENT_BRANCH and tag $TAG"
+  # Push current branch and tags to origin
+  CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  git push origin "$CURRENT_BRANCH"
+  git push origin "$TAG"
+  echo "Done: pushed $CURRENT_BRANCH and tag $TAG"
+fi
