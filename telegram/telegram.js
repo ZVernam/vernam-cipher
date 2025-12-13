@@ -21,6 +21,7 @@ function debug(text) {
 
 const setupTelegram = () => {
   debug(`Search params: ${JSON.stringify(window.location.search)}`);
+  debug(`Server API: ${JSON.stringify(window.SERVER_API)}`)
 };
 
 
