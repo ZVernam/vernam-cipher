@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 
+echo "VERSION=${VERSION}"
 echo "SERVER_API=${SERVER_API}"
 
 ESCAPED_VALUE=$(printf '%s' "$SERVER_API" | sed 's/[\/&|]/\\&/g')

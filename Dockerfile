@@ -1,3 +1,5 @@
+ARG VERSION="0.6.4"
+
 # Build stage
 FROM node:22-alpine AS builder
 
@@ -21,9 +23,11 @@ RUN npm run build:telegram
 # Production stage
 FROM nginx:alpine
 
+ENV VERSION="$VERSION"
+
 LABEL maintainer="Evgenii Shchepotev" \
       description="Vernam cipher JS implementation" \
-      version="0.6.4"
+      version="$VERSION"
 
 # Copy built artifacts from builder stage to nginx html directory
 COPY --from=builder /app/telegram/dist /usr/share/nginx/html
@@ -31,6 +35,9 @@ COPY --from=builder /app/telegram/dist /usr/share/nginx/html
 # Copy entrypoint script
 COPY .docker/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
+
+# Switch to non-root user for security
+USER nginx
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
