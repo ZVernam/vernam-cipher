@@ -26,12 +26,12 @@ const setupTelegram = () => {
 
 
 export const isTg = () => {
-  debugger;
   let webApp = getWebApp();
   if (!webApp) {
     debug(`Opened OUTSIDE Telegram`);
     return false;
   }
+  debugger;
   debug(`Opened INSIDE Telegram`);
   webApp.ready();
   setupTelegram()
